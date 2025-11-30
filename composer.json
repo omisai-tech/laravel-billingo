@@ -1,0 +1,62 @@
+{
+    "name": "omisai/laravel-billingo",
+    "description": "Laravel package for Billingo API integration",
+    "keywords": [
+        "laravel",
+        "billingo",
+        "api",
+        "invoice",
+        "omisai"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sándor Gergely Bornemisza",
+            "email": "bornemisza@omisai.com",
+            "homepage": "https://omisai.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/config": "^10|^11|^12"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "pestphp/pest": "^4.1",
+        "pestphp/pest-plugin-laravel": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omisai\\Billingo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omisai\\Billingo\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Omisai\\Billingo\\BillingoServiceProvider"
+            ],
+            "aliases": {
+                "Billingo": "Omisai\\Billingo\\Facades\\Billingo"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "test:coverage": "pest --coverage"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
