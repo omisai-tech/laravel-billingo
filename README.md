@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/omisai/laravel-billingo?style=for-the-badge)](https://packagist.org/packages/omisai/laravel-billingo)
 [![License](https://img.shields.io/packagist/l/omisai/laravel-billingo?style=for-the-badge)](https://packagist.org/packages/omisai/laravel-billingo)
-[![PHP Version Require](https://img.shields.io/badge/PHP-%3E%3D8.2-blue?style=for-the-badge&logo=php)](https://packagist.org/packages/omisai/laravel-billingo)
-![Laravel](https://img.shields.io/badge/Laravel-10%2C11%2C12-red?style=for-the-badge&logo=laravel)
+[![PHP Version Require](https://img.shields.io/badge/PHP-%3E%3D8.3-blue?style=for-the-badge&logo=php)](https://packagist.org/packages/omisai/laravel-billingo)
+![Laravel](https://img.shields.io/badge/Laravel-11%2C12-red?style=for-the-badge&logo=laravel)
 ![Billingo API](https://img.shields.io/badge/Billingo%20API-v3-yellow?style=for-the-badge)
 
 # About
