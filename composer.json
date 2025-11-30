@@ -18,12 +18,12 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "illuminate/support": "^10.0|^11.0|^12.0",
-        "illuminate/config": "^10|^11|^12"
+        "php": "^8.3",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/config": "^11|^12"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "orchestra/testbench": "^9.0|^10.0",
         "pestphp/pest": "^4.1",
         "pestphp/pest-plugin-laravel": "^4.0"
     },

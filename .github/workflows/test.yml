@@ -19,16 +19,9 @@ jobs:
             fail-fast: false
             max-parallel: 1
             matrix:
-                php: [8.2, 8.3, 8.4, 8.5]
-                laravel: [10.*, 11.*, 12.*]
+                php: [8.3, 8.4]
+                laravel: [11.*, 12.*]
                 dependency-version: [prefer-stable]
-                exclude:
-                    - laravel: "10.*"
-                      php: 8.5
-                    - laravel: "11.*"
-                      php: 8.5
-                    - laravel: "12.*"
-                      php: 8.5
         name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
         env:
             APP_NAME: Test
@@ -56,4 +49,4 @@ jobs:
                   composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
             - name: Execute tests
-              run: composer run test:unit
+              run: composer run test

@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 - Full Billingo API v3 support
-- Laravel 10, 11, and 12 compatibility
-- PHP 8.2+ support
+- Laravel 11, and 12 compatibility
+- PHP 8.3+ support
 - Service Provider with auto-discovery
 - Facade for easy API access
 - Dependency Injection support for all API classes
