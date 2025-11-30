@@ -111,5 +111,11 @@ interface ModelInterface
      */
     public function isNullableSetToNull(string $property): bool;
 
-    public function offsetGet(mixed $offset): mixed;
+    /**
+     * Retrieves the value at the specified offset.
+     *
+     * @param mixed $offset The offset to retrieve.
+     * @return mixed The value at the given offset, or null if not set.
+     */
+    public function offsetGet(mixed $offset);
 }
