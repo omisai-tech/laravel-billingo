@@ -34,7 +34,20 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 
 ## Security
 
-If you discover any security-related issues, please email security@omisai.com instead of using the issue tracker. For more information, see [SECURITY.md](SECURITY.md).
+```php
+// ✅ DO: Use environment variables
+BILLINGO_API_KEY=your-api-key-here
+
+// ❌ DON'T: Hardcode API keys in your code
+$config = ['api_key' => 'your-api-key-here'];
+```
+
+1. **Disable Debug Mode**: Set `BILLINGO_DEBUG=false` in production
+2. **Limit API Key Scope**: Use API keys with minimal required permissions
+3. **Rotate Keys**: Regularly rotate your API keys
+4. **Monitor Usage**: Monitor API usage for suspicious activity
+
+Please see [SECURITY.md](.github/SECURITY.md) for details on reporting security vulnerabilities.
 
 ## License
 
