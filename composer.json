@@ -56,7 +56,9 @@
     },
     "scripts": {
         "test": "pest",
-        "test:coverage": "pest --coverage"
+        "test:coverage": "pest --coverage",
+        "lint": "pint --parallel",
+        "test:lint": "pint --parallel --test"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
