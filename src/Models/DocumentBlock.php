@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentBlock Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentBlock implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -64,7 +62,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => 'string',
         'custom_field1' => 'string',
         'custom_field2' => 'string',
-        'type' => '\Omisai\Billingo\Models\DocumentBlockType'
+        'type' => '\Omisai\Billingo\Models\DocumentBlockType',
     ];
 
     /**
@@ -80,13 +78,13 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => null,
         'custom_field1' => null,
         'custom_field2' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'id' => false,
@@ -94,13 +92,13 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => false,
         'custom_field1' => false,
         'custom_field2' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -126,8 +124,6 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -137,7 +133,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -147,7 +143,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -156,9 +152,6 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -167,9 +160,6 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -188,7 +178,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => 'prefix',
         'custom_field1' => 'custom_field1',
         'custom_field2' => 'custom_field2',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
@@ -202,7 +192,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => 'setPrefix',
         'custom_field1' => 'setCustomField1',
         'custom_field2' => 'setCustomField2',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
@@ -216,7 +206,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         'prefix' => 'getPrefix',
         'custom_field1' => 'getCustomField1',
         'custom_field2' => 'getCustomField2',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
@@ -260,7 +250,6 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -271,8 +260,8 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -289,9 +278,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -325,7 +312,6 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets id
      *
@@ -339,7 +325,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int|null $id id
+     * @param  int|null  $id  id
      *
      * @return self
      */
@@ -366,7 +352,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param  string|null  $name  name
      *
      * @return self
      */
@@ -393,7 +379,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets prefix
      *
-     * @param string|null $prefix prefix
+     * @param  string|null  $prefix  prefix
      *
      * @return self
      */
@@ -420,7 +406,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets custom_field1
      *
-     * @param string|null $custom_field1 custom_field1
+     * @param  string|null  $custom_field1  custom_field1
      *
      * @return self
      */
@@ -447,7 +433,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets custom_field2
      *
-     * @param string|null $custom_field2 custom_field2
+     * @param  string|null  $custom_field2  custom_field2
      *
      * @return self
      */
@@ -464,7 +450,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return \Omisai\Billingo\Models\DocumentBlockType|null
+     * @return DocumentBlockType|null
      */
     public function getType()
     {
@@ -474,7 +460,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Omisai\Billingo\Models\DocumentBlockType|null $type type
+     * @param  DocumentBlockType|null  $type  type
      *
      * @return self
      */
@@ -487,12 +473,11 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -502,7 +487,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -515,10 +500,8 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -532,9 +515,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -546,7 +527,7 @@ class DocumentBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

@@ -5,7 +5,7 @@ use Omisai\Billingo\Models\Currency;
 
 describe('BankAccount Model', function () {
     it('can be instantiated with empty data', function () {
-        $bankAccount = new BankAccount();
+        $bankAccount = new BankAccount;
 
         expect($bankAccount)->toBeInstanceOf(BankAccount::class);
     });
@@ -27,7 +27,7 @@ describe('BankAccount Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $bankAccount = new BankAccount();
+        $bankAccount = new BankAccount;
 
         $bankAccount->setId(123);
         $bankAccount->setName('EUR Account');

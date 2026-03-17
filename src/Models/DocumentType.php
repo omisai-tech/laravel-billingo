@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * DocumentType Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -102,7 +98,7 @@ class DocumentType
             self::PROFORMA,
             self::RECEIPT,
             self::RECEIPT_CANCELLATION,
-            self::WAYBILL
+            self::WAYBILL,
         ];
     }
 }

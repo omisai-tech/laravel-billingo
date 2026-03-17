@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentInsert Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentInsert implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -77,7 +75,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => '\Omisai\Billingo\Models\DocumentSettings',
         'advance_invoice' => 'int[]',
         'discount' => '\Omisai\Billingo\Models\Discount',
-        'instant_payment' => 'bool'
+        'instant_payment' => 'bool',
     ];
 
     /**
@@ -106,13 +104,13 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => null,
         'advance_invoice' => null,
         'discount' => null,
-        'instant_payment' => null
+        'instant_payment' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'vendor_id' => false,
@@ -133,13 +131,13 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => false,
         'advance_invoice' => false,
         'discount' => false,
-        'instant_payment' => false
+        'instant_payment' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -165,8 +163,6 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -176,7 +172,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -186,7 +182,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -195,9 +191,6 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -206,9 +199,6 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -240,7 +230,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => 'settings',
         'advance_invoice' => 'advance_invoice',
         'discount' => 'discount',
-        'instant_payment' => 'instant_payment'
+        'instant_payment' => 'instant_payment',
     ];
 
     /**
@@ -267,7 +257,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => 'setSettings',
         'advance_invoice' => 'setAdvanceInvoice',
         'discount' => 'setDiscount',
-        'instant_payment' => 'setInstantPayment'
+        'instant_payment' => 'setInstantPayment',
     ];
 
     /**
@@ -294,7 +284,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         'settings' => 'getSettings',
         'advance_invoice' => 'getAdvanceInvoice',
         'discount' => 'getDiscount',
-        'instant_payment' => 'getInstantPayment'
+        'instant_payment' => 'getInstantPayment',
     ];
 
     /**
@@ -338,7 +328,6 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -349,8 +338,8 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -380,9 +369,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -426,6 +413,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -440,7 +428,6 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets vendor_id
      *
@@ -454,7 +441,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vendor_id
      *
-     * @param string|null $vendor_id vendor_id
+     * @param  string|null  $vendor_id  vendor_id
      *
      * @return self
      */
@@ -481,7 +468,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets partner_id
      *
-     * @param int $partner_id partner_id
+     * @param  int  $partner_id  partner_id
      *
      * @return self
      */
@@ -508,7 +495,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets block_id
      *
-     * @param int $block_id block_id
+     * @param  int  $block_id  block_id
      *
      * @return self
      */
@@ -535,7 +522,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bank_account_id
      *
-     * @param int|null $bank_account_id bank_account_id
+     * @param  int|null  $bank_account_id  bank_account_id
      *
      * @return self
      */
@@ -552,7 +539,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return \Omisai\Billingo\Models\DocumentInsertType
+     * @return DocumentInsertType
      */
     public function getType()
     {
@@ -562,7 +549,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Omisai\Billingo\Models\DocumentInsertType $type type
+     * @param  DocumentInsertType  $type  type
      *
      * @return self
      */
@@ -589,7 +576,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fulfillment_date
      *
-     * @param \DateTime $fulfillment_date fulfillment_date
+     * @param  \DateTime  $fulfillment_date  fulfillment_date
      *
      * @return self
      */
@@ -616,7 +603,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets due_date
      *
-     * @param \DateTime $due_date due_date
+     * @param  \DateTime  $due_date  due_date
      *
      * @return self
      */
@@ -633,7 +620,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payment_method
      *
-     * @return \Omisai\Billingo\Models\PaymentMethod
+     * @return PaymentMethod
      */
     public function getPaymentMethod()
     {
@@ -643,7 +630,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payment_method
      *
-     * @param \Omisai\Billingo\Models\PaymentMethod $payment_method payment_method
+     * @param  PaymentMethod  $payment_method  payment_method
      *
      * @return self
      */
@@ -660,7 +647,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets language
      *
-     * @return \Omisai\Billingo\Models\DocumentLanguage
+     * @return DocumentLanguage
      */
     public function getLanguage()
     {
@@ -670,7 +657,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets language
      *
-     * @param \Omisai\Billingo\Models\DocumentLanguage $language language
+     * @param  DocumentLanguage  $language  language
      *
      * @return self
      */
@@ -687,7 +674,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return \Omisai\Billingo\Models\Currency
+     * @return Currency
      */
     public function getCurrency()
     {
@@ -697,7 +684,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param \Omisai\Billingo\Models\Currency $currency currency
+     * @param  Currency  $currency  currency
      *
      * @return self
      */
@@ -724,7 +711,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets conversion_rate
      *
-     * @param float|null $conversion_rate conversion_rate
+     * @param  float|null  $conversion_rate  conversion_rate
      *
      * @return self
      */
@@ -751,7 +738,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets electronic
      *
-     * @param bool|null $electronic electronic
+     * @param  bool|null  $electronic  electronic
      *
      * @return self
      */
@@ -778,7 +765,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paid
      *
-     * @param bool|null $paid paid
+     * @param  bool|null  $paid  paid
      *
      * @return self
      */
@@ -795,7 +782,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets items
      *
-     * @return \Omisai\Billingo\Models\DocumentInsertItemsInner[]|null
+     * @return DocumentInsertItemsInner[]|null
      */
     public function getItems()
     {
@@ -805,7 +792,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets items
      *
-     * @param \Omisai\Billingo\Models\DocumentInsertItemsInner[]|null $items items
+     * @param  DocumentInsertItemsInner[]|null  $items  items
      *
      * @return self
      */
@@ -832,7 +819,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets comment
      *
-     * @param string|null $comment comment
+     * @param  string|null  $comment  comment
      *
      * @return self
      */
@@ -849,7 +836,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets settings
      *
-     * @return \Omisai\Billingo\Models\DocumentSettings|null
+     * @return DocumentSettings|null
      */
     public function getSettings()
     {
@@ -859,7 +846,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets settings
      *
-     * @param \Omisai\Billingo\Models\DocumentSettings|null $settings settings
+     * @param  DocumentSettings|null  $settings  settings
      *
      * @return self
      */
@@ -886,7 +873,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets advance_invoice
      *
-     * @param int[]|null $advance_invoice advance_invoice
+     * @param  int[]|null  $advance_invoice  advance_invoice
      *
      * @return self
      */
@@ -903,7 +890,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets discount
      *
-     * @return \Omisai\Billingo\Models\Discount|null
+     * @return Discount|null
      */
     public function getDiscount()
     {
@@ -913,7 +900,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets discount
      *
-     * @param \Omisai\Billingo\Models\Discount|null $discount discount
+     * @param  Discount|null  $discount  discount
      *
      * @return self
      */
@@ -940,7 +927,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets instant_payment
      *
-     * @param bool|null $instant_payment instant_payment
+     * @param  bool|null  $instant_payment  instant_payment
      *
      * @return self
      */
@@ -953,12 +940,11 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -968,7 +954,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -981,10 +967,8 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -998,9 +982,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -1012,7 +994,7 @@ class DocumentInsert implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

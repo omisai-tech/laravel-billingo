@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * OnlineSzamlaStatusMessage Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSerializable
+class OnlineSzamlaStatusMessage implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -61,7 +59,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'validation_result_code' => 'string',
         'validation_error_code' => 'string',
-        'human_readable_message' => 'string'
+        'human_readable_message' => 'string',
     ];
 
     /**
@@ -74,24 +72,24 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'validation_result_code' => null,
         'validation_error_code' => null,
-        'human_readable_message' => null
+        'human_readable_message' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'validation_result_code' => false,
         'validation_error_code' => false,
-        'human_readable_message' => false
+        'human_readable_message' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -117,8 +115,6 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -128,7 +124,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -138,7 +134,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -147,9 +143,6 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -158,9 +151,6 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -176,7 +166,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'validation_result_code' => 'validation_result_code',
         'validation_error_code' => 'validation_error_code',
-        'human_readable_message' => 'human_readable_message'
+        'human_readable_message' => 'human_readable_message',
     ];
 
     /**
@@ -187,7 +177,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'validation_result_code' => 'setValidationResultCode',
         'validation_error_code' => 'setValidationErrorCode',
-        'human_readable_message' => 'setHumanReadableMessage'
+        'human_readable_message' => 'setHumanReadableMessage',
     ];
 
     /**
@@ -198,7 +188,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'validation_result_code' => 'getValidationResultCode',
         'validation_error_code' => 'getValidationErrorCode',
-        'human_readable_message' => 'getHumanReadableMessage'
+        'human_readable_message' => 'getHumanReadableMessage',
     ];
 
     /**
@@ -242,7 +232,6 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -253,8 +242,8 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -268,9 +257,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -304,7 +291,6 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets validation_result_code
      *
@@ -318,7 +304,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets validation_result_code
      *
-     * @param string|null $validation_result_code validation_result_code
+     * @param  string|null  $validation_result_code  validation_result_code
      *
      * @return self
      */
@@ -345,7 +331,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets validation_error_code
      *
-     * @param string|null $validation_error_code validation_error_code
+     * @param  string|null  $validation_error_code  validation_error_code
      *
      * @return self
      */
@@ -372,7 +358,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets human_readable_message
      *
-     * @param string|null $human_readable_message human_readable_message
+     * @param  string|null  $human_readable_message  human_readable_message
      *
      * @return self
      */
@@ -385,12 +371,11 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -400,7 +385,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -413,10 +398,8 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -430,9 +413,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -444,7 +425,7 @@ class OnlineSzamlaStatusMessage implements ModelInterface, ArrayAccess, \JsonSer
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

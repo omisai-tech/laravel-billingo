@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * PartnerTaxType Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -63,7 +59,7 @@ class PartnerTaxType
             self::EMPTY,
             self::FOREIGN,
             self::HAS_TAX_NUMBER,
-            self::NO_TAX_NUMBER
+            self::NO_TAX_NUMBER,
         ];
     }
 }

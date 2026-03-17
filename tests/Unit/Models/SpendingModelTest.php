@@ -1,13 +1,13 @@
 <?php
 
-use Omisai\Billingo\Models\SpendingSave;
-use Omisai\Billingo\Models\SpendingPaymentMethod;
-use Omisai\Billingo\Models\Currency;
 use Omisai\Billingo\Models\Category;
+use Omisai\Billingo\Models\Currency;
+use Omisai\Billingo\Models\SpendingPaymentMethod;
+use Omisai\Billingo\Models\SpendingSave;
 
 describe('SpendingSave Model', function () {
     it('can be instantiated with empty data', function () {
-        $spending = new SpendingSave();
+        $spending = new SpendingSave;
 
         expect($spending)->toBeInstanceOf(SpendingSave::class);
     });
@@ -35,7 +35,7 @@ describe('SpendingSave Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $spending = new SpendingSave();
+        $spending = new SpendingSave;
         $dueDate = new DateTime('+30 days');
         $fulfillmentDate = new DateTime('today');
         $paidAt = new DateTime('today');

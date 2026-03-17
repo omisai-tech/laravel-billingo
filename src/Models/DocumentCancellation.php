@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentCancellation Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentCancellation implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -60,7 +58,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $openAPITypes = [
         'cancellation_reason' => 'string',
-        'cancellation_recipients' => 'string'
+        'cancellation_recipients' => 'string',
     ];
 
     /**
@@ -72,23 +70,23 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $openAPIFormats = [
         'cancellation_reason' => null,
-        'cancellation_recipients' => null
+        'cancellation_recipients' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'cancellation_reason' => false,
-        'cancellation_recipients' => false
+        'cancellation_recipients' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -114,8 +112,6 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -125,7 +121,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -135,7 +131,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -144,9 +140,6 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -155,9 +148,6 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -172,7 +162,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'cancellation_reason' => 'cancellation_reason',
-        'cancellation_recipients' => 'cancellation_recipients'
+        'cancellation_recipients' => 'cancellation_recipients',
     ];
 
     /**
@@ -182,7 +172,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'cancellation_reason' => 'setCancellationReason',
-        'cancellation_recipients' => 'setCancellationRecipients'
+        'cancellation_recipients' => 'setCancellationRecipients',
     ];
 
     /**
@@ -192,7 +182,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'cancellation_reason' => 'getCancellationReason',
-        'cancellation_recipients' => 'getCancellationRecipients'
+        'cancellation_recipients' => 'getCancellationRecipients',
     ];
 
     /**
@@ -236,7 +226,6 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -247,8 +236,8 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -261,9 +250,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -297,7 +284,6 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets cancellation_reason
      *
@@ -311,7 +297,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets cancellation_reason
      *
-     * @param string|null $cancellation_reason cancellation_reason
+     * @param  string|null  $cancellation_reason  cancellation_reason
      *
      * @return self
      */
@@ -338,7 +324,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets cancellation_recipients
      *
-     * @param string|null $cancellation_recipients cancellation_recipients
+     * @param  string|null  $cancellation_recipients  cancellation_recipients
      *
      * @return self
      */
@@ -351,12 +337,11 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -366,7 +351,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -379,10 +364,8 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -396,9 +379,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -410,7 +391,7 @@ class DocumentCancellation implements ModelInterface, ArrayAccess, \JsonSerializ
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

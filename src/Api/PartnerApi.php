@@ -5,7 +5,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -33,22 +32,29 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Utils;
 use Omisai\Billingo\ApiException;
 use Omisai\Billingo\Configuration;
-use Omisai\Billingo\FormDataProcessor;
 use Omisai\Billingo\HeaderSelector;
+use Omisai\Billingo\Models\ClientErrorResponse;
+use Omisai\Billingo\Models\Partner;
+use Omisai\Billingo\Models\PartnerList;
+use Omisai\Billingo\Models\ServerErrorResponse;
+use Omisai\Billingo\Models\SubscriptionErrorResponse;
+use Omisai\Billingo\Models\TooManyRequestsResponse;
+use Omisai\Billingo\Models\ValidationErrorResponse;
 use Omisai\Billingo\ObjectSerializer;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * PartnerApi Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -74,7 +80,7 @@ class PartnerApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'createPartner' => [
             'application/json',
@@ -94,10 +100,7 @@ class PartnerApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param  int  $hostIndex  (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
@@ -105,16 +108,16 @@ class PartnerApi
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
+        $this->client = $client ?: new Client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
-        $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->headerSelector = $selector ?: new HeaderSelector;
         $this->hostIndex = $hostIndex;
     }
 
     /**
      * Set the host index
      *
-     * @param int $hostIndex Host index (required)
+     * @param  int  $hostIndex  Host index (required)
      */
     public function setHostIndex($hostIndex): void
     {
@@ -144,16 +147,17 @@ class PartnerApi
      *
      * Create a partner
      *
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
+     * @param  Partner  $partner  Partner object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Partner|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function createPartner($partner, string $contentType = self::contentTypes['createPartner'][0])
     {
-        list($response) = $this->createPartnerWithHttpInfo($partner, $contentType);
+        [$response] = $this->createPartnerWithHttpInfo($partner, $contentType);
+
         return $response;
     }
 
@@ -162,12 +166,12 @@ class PartnerApi
      *
      * Create a partner
      *
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
+     * @param  Partner  $partner  Partner object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createPartnerWithHttpInfo($partner, string $contentType = self::contentTypes['createPartner'][0])
     {
@@ -194,7 +198,6 @@ class PartnerApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 201:
@@ -246,8 +249,6 @@ class PartnerApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -335,7 +336,6 @@ class PartnerApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -345,11 +345,11 @@ class PartnerApi
      *
      * Create a partner
      *
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
+     * @param  Partner  $partner  Partner object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createPartnerAsync($partner, string $contentType = self::contentTypes['createPartner'][0])
     {
@@ -366,11 +366,11 @@ class PartnerApi
      *
      * Create a partner
      *
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
+     * @param  Partner  $partner  Partner object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createPartnerAsyncWithHttpInfo($partner, string $contentType = self::contentTypes['createPartner'][0])
     {
@@ -382,7 +382,7 @@ class PartnerApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -393,7 +393,7 @@ class PartnerApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -416,11 +416,11 @@ class PartnerApi
     /**
      * Create request for operation 'createPartner'
      *
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
+     * @param  Partner  $partner  Partner object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createPartner'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createPartnerRequest($partner, string $contentType = self::contentTypes['createPartner'][0])
     {
@@ -432,7 +432,6 @@ class PartnerApi
             );
         }
 
-
         $resourcePath = '/partners';
         $formParams = [];
         $queryParams = [];
@@ -440,12 +439,8 @@ class PartnerApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -453,8 +448,8 @@ class PartnerApi
         // for model (json/xml)
         if (isset($partner)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($partner));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($partner));
             } else {
                 $httpBody = $partner;
             }
@@ -466,15 +461,15 @@ class PartnerApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -500,9 +495,10 @@ class PartnerApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -513,12 +509,12 @@ class PartnerApi
      *
      * Delete a partner
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function deletePartner($id, string $contentType = self::contentTypes['deletePartner'][0])
     {
@@ -530,12 +526,12 @@ class PartnerApi
      *
      * Delete a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function deletePartnerWithHttpInfo($id, string $contentType = self::contentTypes['deletePartner'][0])
     {
@@ -562,7 +558,6 @@ class PartnerApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -625,7 +620,6 @@ class PartnerApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -635,11 +629,11 @@ class PartnerApi
      *
      * Delete a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deletePartnerAsync($id, string $contentType = self::contentTypes['deletePartner'][0])
     {
@@ -656,11 +650,11 @@ class PartnerApi
      *
      * Delete a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deletePartnerAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePartner'][0])
     {
@@ -670,7 +664,7 @@ class PartnerApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -693,11 +687,11 @@ class PartnerApi
     /**
      * Create request for operation 'deletePartner'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePartner'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function deletePartnerRequest($id, string $contentType = self::contentTypes['deletePartner'][0])
     {
@@ -709,7 +703,6 @@ class PartnerApi
             );
         }
 
-
         $resourcePath = '/partners/{id}';
         $formParams = [];
         $queryParams = [];
@@ -717,20 +710,17 @@ class PartnerApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -744,15 +734,15 @@ class PartnerApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -778,9 +768,10 @@ class PartnerApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -791,16 +782,17 @@ class PartnerApi
      *
      * Retrieve a partner
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Partner|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function getPartner($id, string $contentType = self::contentTypes['getPartner'][0])
     {
-        list($response) = $this->getPartnerWithHttpInfo($id, $contentType);
+        [$response] = $this->getPartnerWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -809,12 +801,12 @@ class PartnerApi
      *
      * Retrieve a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getPartnerWithHttpInfo($id, string $contentType = self::contentTypes['getPartner'][0])
     {
@@ -841,7 +833,6 @@ class PartnerApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -893,8 +884,6 @@ class PartnerApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -982,7 +971,6 @@ class PartnerApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -992,11 +980,11 @@ class PartnerApi
      *
      * Retrieve a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPartnerAsync($id, string $contentType = self::contentTypes['getPartner'][0])
     {
@@ -1013,11 +1001,11 @@ class PartnerApi
      *
      * Retrieve a partner
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPartnerAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPartner'][0])
     {
@@ -1029,7 +1017,7 @@ class PartnerApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1040,7 +1028,7 @@ class PartnerApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1063,11 +1051,11 @@ class PartnerApi
     /**
      * Create request for operation 'getPartner'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPartner'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getPartnerRequest($id, string $contentType = self::contentTypes['getPartner'][0])
     {
@@ -1079,7 +1067,6 @@ class PartnerApi
             );
         }
 
-
         $resourcePath = '/partners/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1087,20 +1074,17 @@ class PartnerApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1114,15 +1098,15 @@ class PartnerApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1148,9 +1132,10 @@ class PartnerApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1161,18 +1146,19 @@ class PartnerApi
      *
      * List all partners
      *
-     * @param  int|null $page page (optional)
-     * @param  int|null $per_page per_page (optional, default to 25)
-     * @param  string|null $query query (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
+     * @param  int|null  $page  page (optional)
+     * @param  int|null  $per_page  per_page (optional, default to 25)
+     * @param  string|null  $query  query (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return PartnerList|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\PartnerList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function listPartner($page = null, $per_page = 25, $query = null, string $contentType = self::contentTypes['listPartner'][0])
     {
-        list($response) = $this->listPartnerWithHttpInfo($page, $per_page, $query, $contentType);
+        [$response] = $this->listPartnerWithHttpInfo($page, $per_page, $query, $contentType);
+
         return $response;
     }
 
@@ -1181,14 +1167,14 @@ class PartnerApi
      *
      * List all partners
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  string|null $query (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  string|null  $query  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\PartnerList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function listPartnerWithHttpInfo($page = null, $per_page = 25, $query = null, string $contentType = self::contentTypes['listPartner'][0])
     {
@@ -1215,7 +1201,6 @@ class PartnerApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -1261,8 +1246,6 @@ class PartnerApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1342,7 +1325,6 @@ class PartnerApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1352,13 +1334,13 @@ class PartnerApi
      *
      * List all partners
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  string|null $query (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  string|null  $query  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listPartnerAsync($page = null, $per_page = 25, $query = null, string $contentType = self::contentTypes['listPartner'][0])
     {
@@ -1375,13 +1357,13 @@ class PartnerApi
      *
      * List all partners
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  string|null $query (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  string|null  $query  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listPartnerAsyncWithHttpInfo($page = null, $per_page = 25, $query = null, string $contentType = self::contentTypes['listPartner'][0])
     {
@@ -1393,7 +1375,7 @@ class PartnerApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1404,7 +1386,7 @@ class PartnerApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1427,17 +1409,16 @@ class PartnerApi
     /**
      * Create request for operation 'listPartner'
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  string|null $query (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  string|null  $query  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listPartner'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function listPartnerRequest($page = null, $per_page = 25, $query = null, string $contentType = self::contentTypes['listPartner'][0])
     {
-
 
         if ($per_page !== null && $per_page > 100) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling PartnerApi.listPartner, must be smaller than or equal to 100.');
@@ -1445,8 +1426,6 @@ class PartnerApi
         if ($per_page !== null && $per_page < 1) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling PartnerApi.listPartner, must be bigger than or equal to 1.');
         }
-
-
 
         $resourcePath = '/partners';
         $formParams = [];
@@ -1483,11 +1462,8 @@ class PartnerApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1501,15 +1477,15 @@ class PartnerApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1535,9 +1511,10 @@ class PartnerApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1548,17 +1525,18 @@ class PartnerApi
      *
      * Update a partner
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  Partner  $partner  Partner object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Partner|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function updatePartner($id, $partner, string $contentType = self::contentTypes['updatePartner'][0])
     {
-        list($response) = $this->updatePartnerWithHttpInfo($id, $partner, $contentType);
+        [$response] = $this->updatePartnerWithHttpInfo($id, $partner, $contentType);
+
         return $response;
     }
 
@@ -1567,13 +1545,13 @@ class PartnerApi
      *
      * Update a partner
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  Partner  $partner  Partner object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Partner|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function updatePartnerWithHttpInfo($id, $partner, string $contentType = self::contentTypes['updatePartner'][0])
     {
@@ -1600,7 +1578,6 @@ class PartnerApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -1658,8 +1635,6 @@ class PartnerApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1755,7 +1730,6 @@ class PartnerApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1765,12 +1739,12 @@ class PartnerApi
      *
      * Update a partner
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  Partner  $partner  Partner object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updatePartnerAsync($id, $partner, string $contentType = self::contentTypes['updatePartner'][0])
     {
@@ -1787,12 +1761,12 @@ class PartnerApi
      *
      * Update a partner
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  Partner  $partner  Partner object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updatePartnerAsyncWithHttpInfo($id, $partner, string $contentType = self::contentTypes['updatePartner'][0])
     {
@@ -1804,7 +1778,7 @@ class PartnerApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1815,7 +1789,7 @@ class PartnerApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1838,12 +1812,12 @@ class PartnerApi
     /**
      * Create request for operation 'updatePartner'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\Partner $partner Partner object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  Partner  $partner  Partner object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePartner'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function updatePartnerRequest($id, $partner, string $contentType = self::contentTypes['updatePartner'][0])
     {
@@ -1862,7 +1836,6 @@ class PartnerApi
             );
         }
 
-
         $resourcePath = '/partners/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1870,20 +1843,17 @@ class PartnerApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1891,8 +1861,8 @@ class PartnerApi
         // for model (json/xml)
         if (isset($partner)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($partner));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($partner));
             } else {
                 $httpBody = $partner;
             }
@@ -1904,15 +1874,15 @@ class PartnerApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1938,9 +1908,10 @@ class PartnerApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1949,8 +1920,8 @@ class PartnerApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
      * @return array of http client options
+     * @throws \RuntimeException on file opening failure
      */
     protected function createHttpClientOption()
     {
@@ -1958,7 +1929,7 @@ class PartnerApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -1979,7 +1950,7 @@ class PartnerApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
@@ -2002,7 +1973,7 @@ class PartnerApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
@@ -2010,8 +1981,8 @@ class PartnerApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
+        $left = (int) ($rangeCode[0].'00');
+        $right = (int) ($rangeCode[0].'99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

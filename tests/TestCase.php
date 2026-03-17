@@ -3,6 +3,7 @@
 namespace Omisai\Billingo\Tests;
 
 use Omisai\Billingo\BillingoServiceProvider;
+use Omisai\Billingo\Facades\Billingo;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -22,7 +23,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageAliases($app): array
     {
         return [
-            'Billingo' => \Omisai\Billingo\Facades\Billingo::class,
+            'Billingo' => Billingo::class,
         ];
     }
 
@@ -38,7 +39,7 @@ abstract class TestCase extends Orchestra
     protected function resolveApplicationEnvironmentVariables($app)
     {
         if (property_exists($this, 'loadEnvironmentVariables') && $this->loadEnvironmentVariables === true) {
-            $app->useEnvironmentPath(__DIR__ . '/..');
+            $app->useEnvironmentPath(__DIR__.'/..');
             $app->make('Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables')->bootstrap($app);
         }
     }

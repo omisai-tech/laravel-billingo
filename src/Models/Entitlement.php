@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,14 +29,11 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * Entitlement Class Doc Comment
  *
  * @category Class
  * @description * &#x60;AAM&#x60; - Alanyi adómentesség * &#x60;ANTIQUES&#x60; - Különbözet szerinti szabályozás - gyűjteménydarabok és régiségek - * &#x60;ARTWORK&#x60; - Különbözet szerinti szabályozás - műalkotások - * &#x60;ATK&#x60; - Áfa tv. tárgyi hatályán kívüli ügylet * &#x60;EAM&#x60; - Áfamentes termékexport, azzal egy tekintet alá eső értékesítések, nemzetközi közlekedéshez kapcsolódó áfamentes ügyletek (Áfa tv. 98-109. §) * &#x60;EUE&#x60; - EU más tagállamában áfaköteles (áfa fizetésére az értékesítő köteles) * &#x60;EUFAD37&#x60; - Áfa tv. 37. § (1) bekezdése alapján a szolgáltatás teljesítése helye az EU más tagállama (áfa fizetésére a vevő köteles) * &#x60;EUFADE&#x60; - Áfa tv. egyéb rendelkezése szerint a teljesítés helye EU más tagállama (áfa fizetésére a vevő kötelezett) * &#x60;HO&#x60; - Áfa tv. szerint EU-n kívül teljesített ügylet * &#x60;KBAET&#x60; - Más tagállamba irányuló áfamentes termékértékesítés (Áfa tv. 89. §) * &#x60;NAM_1&#x60; - Áfamentes közvetítői tevékenység (Áfa tv. 110. §) * &#x60;NAM_2&#x60; - Termékek nemzetközi forgalmához kapcsolódó áfamentes ügylet (Áfa tv. 111-118. §) * &#x60;SECOND_HAND&#x60; - Különbözet szerinti szabályozás - használt cikkek - * &#x60;TAM&#x60; - Tevékenység közérdekű jellegére vagy egyéb sajátos jellegére tekintettel áfamentes (Áfa tv. 85-87.§) * &#x60;TRAVEL_AGENCY&#x60; - Különbözet szerinti szabályozás - utazási irodák -
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -97,7 +93,7 @@ class Entitlement
             self::NAM_2,
             self::SECOND_HAND,
             self::TAM,
-            self::TRAVEL_AGENCY
+            self::TRAVEL_AGENCY,
         ];
     }
 }

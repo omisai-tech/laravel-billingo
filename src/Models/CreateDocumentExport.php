@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * CreateDocumentExport Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateDocumentExport implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -71,7 +69,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => '\Omisai\Billingo\Models\PaymentMethod',
         'sort_by' => '\Omisai\Billingo\Models\DocumentExportSortBy',
         'other_options' => '\Omisai\Billingo\Models\DocumentExportOtherOptions',
-        'filter_extra' => '\Omisai\Billingo\Models\DocumentExportFilterExtra'
+        'filter_extra' => '\Omisai\Billingo\Models\DocumentExportFilterExtra',
     ];
 
     /**
@@ -94,13 +92,13 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => null,
         'sort_by' => null,
         'other_options' => null,
-        'filter_extra' => null
+        'filter_extra' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'query_type' => false,
@@ -115,13 +113,13 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => false,
         'sort_by' => false,
         'other_options' => false,
-        'filter_extra' => false
+        'filter_extra' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -147,8 +145,6 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -158,7 +154,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -168,7 +164,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -177,9 +173,6 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -188,9 +181,6 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -216,7 +206,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => 'payment_method',
         'sort_by' => 'sort_by',
         'other_options' => 'other_options',
-        'filter_extra' => 'filter_extra'
+        'filter_extra' => 'filter_extra',
     ];
 
     /**
@@ -237,7 +227,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => 'setPaymentMethod',
         'sort_by' => 'setSortBy',
         'other_options' => 'setOtherOptions',
-        'filter_extra' => 'setFilterExtra'
+        'filter_extra' => 'setFilterExtra',
     ];
 
     /**
@@ -258,7 +248,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         'payment_method' => 'getPaymentMethod',
         'sort_by' => 'getSortBy',
         'other_options' => 'getOtherOptions',
-        'filter_extra' => 'getFilterExtra'
+        'filter_extra' => 'getFilterExtra',
     ];
 
     /**
@@ -302,7 +292,6 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -313,8 +302,8 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -338,9 +327,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -372,6 +359,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['export_type'] === null) {
             $invalidProperties[] = "'export_type' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -386,11 +374,10 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets query_type
      *
-     * @return \Omisai\Billingo\Models\DocumentExportQueryType
+     * @return DocumentExportQueryType
      */
     public function getQueryType()
     {
@@ -400,7 +387,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets query_type
      *
-     * @param \Omisai\Billingo\Models\DocumentExportQueryType $query_type query_type
+     * @param  DocumentExportQueryType  $query_type  query_type
      *
      * @return self
      */
@@ -427,7 +414,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets start_date
      *
-     * @param \DateTime $start_date start_date
+     * @param  \DateTime  $start_date  start_date
      *
      * @return self
      */
@@ -454,7 +441,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets end_date
      *
-     * @param \DateTime $end_date end_date
+     * @param  \DateTime  $end_date  end_date
      *
      * @return self
      */
@@ -481,7 +468,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets document_block_id
      *
-     * @param int|null $document_block_id document_block_id
+     * @param  int|null  $document_block_id  document_block_id
      *
      * @return self
      */
@@ -498,7 +485,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets export_type
      *
-     * @return \Omisai\Billingo\Models\DocumentExportType
+     * @return DocumentExportType
      */
     public function getExportType()
     {
@@ -508,7 +495,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets export_type
      *
-     * @param \Omisai\Billingo\Models\DocumentExportType $export_type export_type
+     * @param  DocumentExportType  $export_type  export_type
      *
      * @return self
      */
@@ -535,7 +522,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets number_start_year
      *
-     * @param int|null $number_start_year number_start_year
+     * @param  int|null  $number_start_year  number_start_year
      *
      * @return self
      */
@@ -562,7 +549,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets number_start_sequence
      *
-     * @param int|null $number_start_sequence number_start_sequence
+     * @param  int|null  $number_start_sequence  number_start_sequence
      *
      * @return self
      */
@@ -589,7 +576,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets number_end_year
      *
-     * @param int|null $number_end_year number_end_year
+     * @param  int|null  $number_end_year  number_end_year
      *
      * @return self
      */
@@ -616,7 +603,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets number_end_sequence
      *
-     * @param int|null $number_end_sequence number_end_sequence
+     * @param  int|null  $number_end_sequence  number_end_sequence
      *
      * @return self
      */
@@ -633,7 +620,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets payment_method
      *
-     * @return \Omisai\Billingo\Models\PaymentMethod|null
+     * @return PaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -643,7 +630,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets payment_method
      *
-     * @param \Omisai\Billingo\Models\PaymentMethod|null $payment_method payment_method
+     * @param  PaymentMethod|null  $payment_method  payment_method
      *
      * @return self
      */
@@ -660,7 +647,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets sort_by
      *
-     * @return \Omisai\Billingo\Models\DocumentExportSortBy|null
+     * @return DocumentExportSortBy|null
      */
     public function getSortBy()
     {
@@ -670,7 +657,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets sort_by
      *
-     * @param \Omisai\Billingo\Models\DocumentExportSortBy|null $sort_by sort_by
+     * @param  DocumentExportSortBy|null  $sort_by  sort_by
      *
      * @return self
      */
@@ -687,7 +674,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets other_options
      *
-     * @return \Omisai\Billingo\Models\DocumentExportOtherOptions|null
+     * @return DocumentExportOtherOptions|null
      */
     public function getOtherOptions()
     {
@@ -697,7 +684,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets other_options
      *
-     * @param \Omisai\Billingo\Models\DocumentExportOtherOptions|null $other_options other_options
+     * @param  DocumentExportOtherOptions|null  $other_options  other_options
      *
      * @return self
      */
@@ -714,7 +701,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets filter_extra
      *
-     * @return \Omisai\Billingo\Models\DocumentExportFilterExtra|null
+     * @return DocumentExportFilterExtra|null
      */
     public function getFilterExtra()
     {
@@ -724,7 +711,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets filter_extra
      *
-     * @param \Omisai\Billingo\Models\DocumentExportFilterExtra|null $filter_extra filter_extra
+     * @param  DocumentExportFilterExtra|null  $filter_extra  filter_extra
      *
      * @return self
      */
@@ -737,12 +724,11 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -752,7 +738,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -765,10 +751,8 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -782,9 +766,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -796,7 +778,7 @@ class CreateDocumentExport implements ModelInterface, ArrayAccess, \JsonSerializ
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

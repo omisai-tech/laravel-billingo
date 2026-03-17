@@ -1,16 +1,16 @@
 <?php
 
+use Omisai\Billingo\Models\BankAccountList;
 use Omisai\Billingo\Models\Document;
-use Omisai\Billingo\Models\DocumentItem;
-use Omisai\Billingo\Models\DocumentList;
-use Omisai\Billingo\Models\PartnerList;
-use Omisai\Billingo\Models\ProductList;
 use Omisai\Billingo\Models\DocumentBlock;
 use Omisai\Billingo\Models\DocumentBlockList;
-use Omisai\Billingo\Models\BankAccountList;
-use Omisai\Billingo\Models\SpendingList;
-use Omisai\Billingo\Models\OnlinePayment;
+use Omisai\Billingo\Models\DocumentItem;
+use Omisai\Billingo\Models\DocumentList;
 use Omisai\Billingo\Models\DocumentPublicUrl;
+use Omisai\Billingo\Models\OnlinePayment;
+use Omisai\Billingo\Models\PartnerList;
+use Omisai\Billingo\Models\ProductList;
+use Omisai\Billingo\Models\SpendingList;
 
 describe('Document Response Model', function () {
     it('can be instantiated with document data', function () {

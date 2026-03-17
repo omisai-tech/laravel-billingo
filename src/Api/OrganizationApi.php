@@ -5,7 +5,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -33,22 +32,28 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Utils;
 use Omisai\Billingo\ApiException;
 use Omisai\Billingo\Configuration;
-use Omisai\Billingo\FormDataProcessor;
 use Omisai\Billingo\HeaderSelector;
+use Omisai\Billingo\Models\ClientErrorResponse;
+use Omisai\Billingo\Models\OrganizationData;
+use Omisai\Billingo\Models\ServerErrorResponse;
+use Omisai\Billingo\Models\SubscriptionErrorResponse;
+use Omisai\Billingo\Models\TooManyRequestsResponse;
+use Omisai\Billingo\Models\ValidationErrorResponse;
 use Omisai\Billingo\ObjectSerializer;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * OrganizationApi Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -74,7 +79,7 @@ class OrganizationApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'getOrganizationData' => [
             'application/json',
@@ -82,10 +87,7 @@ class OrganizationApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param  int  $hostIndex  (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
@@ -93,16 +95,16 @@ class OrganizationApi
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
+        $this->client = $client ?: new Client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
-        $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->headerSelector = $selector ?: new HeaderSelector;
         $this->hostIndex = $hostIndex;
     }
 
     /**
      * Set the host index
      *
-     * @param int $hostIndex Host index (required)
+     * @param  int  $hostIndex  Host index (required)
      */
     public function setHostIndex($hostIndex): void
     {
@@ -132,15 +134,16 @@ class OrganizationApi
      *
      * Retrieve a organization data.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return OrganizationData|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\OrganizationData|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function getOrganizationData(string $contentType = self::contentTypes['getOrganizationData'][0])
     {
-        list($response) = $this->getOrganizationDataWithHttpInfo($contentType);
+        [$response] = $this->getOrganizationDataWithHttpInfo($contentType);
+
         return $response;
     }
 
@@ -149,11 +152,11 @@ class OrganizationApi
      *
      * Retrieve a organization data.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\OrganizationData|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getOrganizationDataWithHttpInfo(string $contentType = self::contentTypes['getOrganizationData'][0])
     {
@@ -180,7 +183,6 @@ class OrganizationApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -226,8 +228,6 @@ class OrganizationApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -307,7 +307,6 @@ class OrganizationApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -317,10 +316,10 @@ class OrganizationApi
      *
      * Retrieve a organization data.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getOrganizationDataAsync(string $contentType = self::contentTypes['getOrganizationData'][0])
     {
@@ -337,10 +336,10 @@ class OrganizationApi
      *
      * Retrieve a organization data.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getOrganizationDataAsyncWithHttpInfo(string $contentType = self::contentTypes['getOrganizationData'][0])
     {
@@ -352,7 +351,7 @@ class OrganizationApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -363,7 +362,7 @@ class OrganizationApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -386,14 +385,13 @@ class OrganizationApi
     /**
      * Create request for operation 'getOrganizationData'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOrganizationData'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getOrganizationDataRequest(string $contentType = self::contentTypes['getOrganizationData'][0])
     {
-
 
         $resourcePath = '/organization';
         $formParams = [];
@@ -402,12 +400,8 @@ class OrganizationApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -421,15 +415,15 @@ class OrganizationApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -455,9 +449,10 @@ class OrganizationApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -466,8 +461,8 @@ class OrganizationApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
      * @return array of http client options
+     * @throws \RuntimeException on file opening failure
      */
     protected function createHttpClientOption()
     {
@@ -475,7 +470,7 @@ class OrganizationApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -496,7 +491,7 @@ class OrganizationApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
@@ -519,7 +514,7 @@ class OrganizationApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
@@ -527,8 +522,8 @@ class OrganizationApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
+        $left = (int) ($rangeCode[0].'00');
+        $right = (int) ($rangeCode[0].'99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

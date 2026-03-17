@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo\Models
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -33,7 +32,6 @@ namespace Omisai\Billingo\Models;
 /**
  * Interface abstracting model access.
  *
- * @package Omisai\Billingo\Models
  * @author  OpenAPI Generator team
  */
 interface ModelInterface
@@ -97,24 +95,18 @@ interface ModelInterface
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool;
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool;
 
     /**
      * Retrieves the value at the specified offset.
      *
-     * @param mixed $offset The offset to retrieve.
+     * @param  mixed  $offset  The offset to retrieve.
      * @return mixed The value at the given offset, or null if not set.
      */
     public function offsetGet(mixed $offset);

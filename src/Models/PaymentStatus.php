@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * PaymentStatus Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -66,7 +62,7 @@ class PaymentStatus
             self::NONE,
             self::OUTSTANDING,
             self::PAID,
-            self::PARTIALLY_PAID
+            self::PARTIALLY_PAID,
         ];
     }
 }

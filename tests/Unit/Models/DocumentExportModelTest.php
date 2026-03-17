@@ -1,13 +1,13 @@
 <?php
 
 use Omisai\Billingo\Models\CreateDocumentExport;
-use Omisai\Billingo\Models\DocumentExportType;
-use Omisai\Billingo\Models\DocumentExportSortBy;
 use Omisai\Billingo\Models\DocumentExportQueryType;
+use Omisai\Billingo\Models\DocumentExportSortBy;
+use Omisai\Billingo\Models\DocumentExportType;
 
 describe('CreateDocumentExport Model', function () {
     it('can be instantiated with empty data', function () {
-        $export = new CreateDocumentExport();
+        $export = new CreateDocumentExport;
 
         expect($export)->toBeInstanceOf(CreateDocumentExport::class);
     });
@@ -30,7 +30,7 @@ describe('CreateDocumentExport Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $export = new CreateDocumentExport();
+        $export = new CreateDocumentExport;
         $startDate = new DateTime('2024-01-01');
         $endDate = new DateTime('2024-12-31');
 

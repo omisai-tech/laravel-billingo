@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * ServerTime Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServerTime implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -62,7 +60,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         'epoch' => 'int',
         'formatted' => 'string',
         'w3c' => 'string',
-        'timezone' => 'string'
+        'timezone' => 'string',
     ];
 
     /**
@@ -76,25 +74,25 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         'epoch' => null,
         'formatted' => null,
         'w3c' => null,
-        'timezone' => null
+        'timezone' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'epoch' => false,
         'formatted' => false,
         'w3c' => false,
-        'timezone' => false
+        'timezone' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -120,8 +118,6 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -131,7 +127,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -141,7 +137,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -150,9 +146,6 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -161,9 +154,6 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -180,7 +170,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         'epoch' => 'epoch',
         'formatted' => 'formatted',
         'w3c' => 'w3c',
-        'timezone' => 'timezone'
+        'timezone' => 'timezone',
     ];
 
     /**
@@ -192,7 +182,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         'epoch' => 'setEpoch',
         'formatted' => 'setFormatted',
         'w3c' => 'setW3c',
-        'timezone' => 'setTimezone'
+        'timezone' => 'setTimezone',
     ];
 
     /**
@@ -204,7 +194,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         'epoch' => 'getEpoch',
         'formatted' => 'getFormatted',
         'w3c' => 'getW3c',
-        'timezone' => 'getTimezone'
+        'timezone' => 'getTimezone',
     ];
 
     /**
@@ -248,7 +238,6 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -259,8 +248,8 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -275,9 +264,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -311,7 +298,6 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets epoch
      *
@@ -325,7 +311,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets epoch
      *
-     * @param int|null $epoch epoch
+     * @param  int|null  $epoch  epoch
      *
      * @return self
      */
@@ -352,7 +338,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets formatted
      *
-     * @param string|null $formatted formatted
+     * @param  string|null  $formatted  formatted
      *
      * @return self
      */
@@ -379,7 +365,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets w3c
      *
-     * @param string|null $w3c w3c
+     * @param  string|null  $w3c  w3c
      *
      * @return self
      */
@@ -406,7 +392,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timezone
      *
-     * @param string|null $timezone timezone
+     * @param  string|null  $timezone  timezone
      *
      * @return self
      */
@@ -419,12 +405,11 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -434,7 +419,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -447,10 +432,8 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -464,9 +447,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -478,7 +459,7 @@ class ServerTime implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

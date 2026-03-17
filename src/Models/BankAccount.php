@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * BankAccount Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
+class BankAccount implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -65,7 +63,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => 'string',
         'swift' => 'string',
         'currency' => '\Omisai\Billingo\Models\Currency',
-        'need_qr' => 'bool'
+        'need_qr' => 'bool',
     ];
 
     /**
@@ -82,13 +80,13 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => null,
         'swift' => null,
         'currency' => null,
-        'need_qr' => null
+        'need_qr' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'id' => false,
@@ -97,13 +95,13 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => false,
         'swift' => false,
         'currency' => false,
-        'need_qr' => false
+        'need_qr' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -129,8 +127,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -140,7 +136,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -150,7 +146,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -159,9 +155,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -170,9 +163,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -192,7 +182,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => 'account_number_iban',
         'swift' => 'swift',
         'currency' => 'currency',
-        'need_qr' => 'need_qr'
+        'need_qr' => 'need_qr',
     ];
 
     /**
@@ -207,7 +197,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => 'setAccountNumberIban',
         'swift' => 'setSwift',
         'currency' => 'setCurrency',
-        'need_qr' => 'setNeedQr'
+        'need_qr' => 'setNeedQr',
     ];
 
     /**
@@ -222,7 +212,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_number_iban' => 'getAccountNumberIban',
         'swift' => 'getSwift',
         'currency' => 'getCurrency',
-        'need_qr' => 'getNeedQr'
+        'need_qr' => 'getNeedQr',
     ];
 
     /**
@@ -266,7 +256,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -277,8 +266,8 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -296,9 +285,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -327,6 +314,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -341,7 +329,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets id
      *
@@ -355,7 +342,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int|null $id id
+     * @param  int|null  $id  id
      *
      * @return self
      */
@@ -382,7 +369,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param  string  $name  name
      *
      * @return self
      */
@@ -409,7 +396,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets account_number
      *
-     * @param string $account_number account_number
+     * @param  string  $account_number  account_number
      *
      * @return self
      */
@@ -436,7 +423,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets account_number_iban
      *
-     * @param string|null $account_number_iban account_number_iban
+     * @param  string|null  $account_number_iban  account_number_iban
      *
      * @return self
      */
@@ -463,7 +450,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets swift
      *
-     * @param string|null $swift swift
+     * @param  string|null  $swift  swift
      *
      * @return self
      */
@@ -480,7 +467,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return \Omisai\Billingo\Models\Currency
+     * @return Currency
      */
     public function getCurrency()
     {
@@ -490,7 +477,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param \Omisai\Billingo\Models\Currency $currency currency
+     * @param  Currency  $currency  currency
      *
      * @return self
      */
@@ -518,7 +505,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets need_qr
      *
-     * @param bool|null $need_qr need_qr
+     * @param  bool|null  $need_qr  need_qr
      *
      * @return self
      * @deprecated
@@ -532,12 +519,11 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -547,7 +533,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -560,10 +546,8 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -577,9 +561,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -591,7 +573,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

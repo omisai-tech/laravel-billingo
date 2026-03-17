@@ -1,20 +1,19 @@
 <?php
 
+use Omisai\Billingo\Models\Currency;
+use Omisai\Billingo\Models\Discount;
+use Omisai\Billingo\Models\DiscountType;
 use Omisai\Billingo\Models\DocumentInsert;
 use Omisai\Billingo\Models\DocumentInsertItemsInner;
 use Omisai\Billingo\Models\DocumentInsertType;
-use Omisai\Billingo\Models\PaymentMethod;
 use Omisai\Billingo\Models\DocumentLanguage;
-use Omisai\Billingo\Models\Currency;
-use Omisai\Billingo\Models\Vat;
+use Omisai\Billingo\Models\PaymentMethod;
 use Omisai\Billingo\Models\UnitPriceType;
-use Omisai\Billingo\Models\Discount;
-use Omisai\Billingo\Models\DiscountType;
-use Omisai\Billingo\Models\DocumentSettings;
+use Omisai\Billingo\Models\Vat;
 
 describe('DocumentInsert Model', function () {
     it('can be instantiated with empty data', function () {
-        $document = new DocumentInsert();
+        $document = new DocumentInsert;
 
         expect($document)->toBeInstanceOf(DocumentInsert::class);
     });
@@ -42,7 +41,7 @@ describe('DocumentInsert Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $document = new DocumentInsert();
+        $document = new DocumentInsert;
 
         $document->setVendorId('VENDOR-001');
         $document->setPartnerId(123);
@@ -94,7 +93,7 @@ describe('DocumentInsert Model', function () {
             'vat' => Vat::_27,
         ]);
 
-        $document = new DocumentInsert();
+        $document = new DocumentInsert;
         $document->setItems([$item1, $item2]);
 
         expect($document->getItems())->toHaveCount(2);
@@ -179,7 +178,7 @@ describe('DocumentInsert Model', function () {
             'value' => 10,
         ]);
 
-        $document = new DocumentInsert();
+        $document = new DocumentInsert;
         $document->setDiscount($discount);
 
         expect($document->getDiscount())->toBeInstanceOf(Discount::class);
@@ -235,7 +234,7 @@ describe('DocumentInsertItemsInner Model', function () {
     });
 
     it('can set comment', function () {
-        $item = new DocumentInsertItemsInner();
+        $item = new DocumentInsertItemsInner;
         $item->setName('Service');
         $item->setComment('Additional notes for this item');
 

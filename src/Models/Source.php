@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * Source Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -60,7 +56,7 @@ class Source
         return [
             self::ALL,
             self::MANUAL,
-            self::NAV
+            self::NAV,
         ];
     }
 }

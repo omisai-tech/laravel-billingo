@@ -1,12 +1,12 @@
 <?php
 
-use Omisai\Billingo\Models\Partner;
 use Omisai\Billingo\Models\Address;
 use Omisai\Billingo\Models\Country;
+use Omisai\Billingo\Models\Partner;
 
 describe('Partner Model', function () {
     it('can be instantiated with empty data', function () {
-        $partner = new Partner();
+        $partner = new Partner;
 
         expect($partner)->toBeInstanceOf(Partner::class);
     });
@@ -22,14 +22,14 @@ describe('Partner Model', function () {
     });
 
     it('can set and get name', function () {
-        $partner = new Partner();
+        $partner = new Partner;
         $partner->setName('Acme Inc');
 
         expect($partner->getName())->toBe('Acme Inc');
     });
 
     it('can set and get emails', function () {
-        $partner = new Partner();
+        $partner = new Partner;
         $partner->setEmails(['test@example.com', 'billing@example.com']);
 
         expect($partner->getEmails())->toBe(['test@example.com', 'billing@example.com']);
@@ -43,7 +43,7 @@ describe('Partner Model', function () {
             'address' => 'Test Street 1',
         ]);
 
-        $partner = new Partner();
+        $partner = new Partner;
         $partner->setAddress($address);
 
         expect($partner->getAddress())->toBeInstanceOf(Address::class);
@@ -87,7 +87,7 @@ describe('Address Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $address = new Address();
+        $address = new Address;
 
         $address->setCountryCode(Country::HU);
         $address->setCity('Debrecen');

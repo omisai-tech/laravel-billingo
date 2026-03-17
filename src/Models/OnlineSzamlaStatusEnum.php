@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * OnlineSzamlaStatusEnum Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -165,7 +161,7 @@ class OnlineSzamlaStatusEnum
             self::UNDER_TAX_LIMIT,
             self::USER_HAS_INVALID_KOBAK,
             self::USER_HASNOT_KOBAK,
-            self::VALIDATION_OK
+            self::VALIDATION_OK,
         ];
     }
 }

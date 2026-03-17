@@ -1,8 +1,6 @@
 <?php
 
-use Omisai\Billingo\Billingo;
-use Omisai\Billingo\Configuration;
-use Omisai\Billingo\HeaderSelector;
+use GuzzleHttp\ClientInterface;
 use Omisai\Billingo\Api\BankAccountApi;
 use Omisai\Billingo\Api\CurrencyApi;
 use Omisai\Billingo\Api\DocumentApi;
@@ -13,11 +11,12 @@ use Omisai\Billingo\Api\PartnerApi;
 use Omisai\Billingo\Api\ProductApi;
 use Omisai\Billingo\Api\SpendingApi;
 use Omisai\Billingo\Api\UtilApi;
-use GuzzleHttp\ClientInterface;
+use Omisai\Billingo\Billingo;
+use Omisai\Billingo\Configuration;
 
 describe('Billingo', function () {
     it('can be instantiated with empty config', function () {
-        $billingo = new Billingo();
+        $billingo = new Billingo;
 
         expect($billingo)->toBeInstanceOf(Billingo::class);
         expect($billingo->getConfiguration())->toBeInstanceOf(Configuration::class);
@@ -58,7 +57,7 @@ describe('Billingo', function () {
     });
 
     it('uses default timeout when not specified', function () {
-        $billingo = new Billingo();
+        $billingo = new Billingo;
 
         // Default timeout is 30 seconds - we can verify the client was created
         expect($billingo->getClient())->toBeInstanceOf(ClientInterface::class);

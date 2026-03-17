@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * PaymentMethod Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -135,7 +131,7 @@ class PaymentMethod
             self::UPWORK,
             self::UTALVANY,
             self::VALTO,
-            self::WIRE_TRANSFER
+            self::WIRE_TRANSFER,
         ];
     }
 }

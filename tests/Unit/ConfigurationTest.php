@@ -4,7 +4,7 @@ use Omisai\Billingo\Configuration;
 
 describe('Configuration', function () {
     beforeEach(function () {
-        $this->config = new Configuration();
+        $this->config = new Configuration;
     });
 
     it('can be instantiated', function () {
@@ -96,7 +96,7 @@ describe('Configuration', function () {
     });
 
     it('can set default configuration', function () {
-        $customConfig = new Configuration();
+        $customConfig = new Configuration;
         $customConfig->setHost('https://custom.host/v3');
 
         Configuration::setDefaultConfiguration($customConfig);
@@ -104,7 +104,7 @@ describe('Configuration', function () {
         expect(Configuration::getDefaultConfiguration()->getHost())->toBe('https://custom.host/v3');
 
         // Reset to avoid affecting other tests
-        Configuration::setDefaultConfiguration(new Configuration());
+        Configuration::setDefaultConfiguration(new Configuration);
     });
 
     it('returns fluent interface on setters', function () {
@@ -127,14 +127,14 @@ describe('Configuration', function () {
 
 describe('Configuration API key with header', function () {
     it('builds correct API key header value', function () {
-        $config = new Configuration();
+        $config = new Configuration;
         $config->setApiKey('X-API-KEY', 'test-key');
 
         expect($config->getApiKeyWithPrefix('X-API-KEY'))->toBe('test-key');
     });
 
     it('builds correct API key header value with prefix', function () {
-        $config = new Configuration();
+        $config = new Configuration;
         $config->setApiKey('Authorization', 'test-token');
         $config->setApiKeyPrefix('Authorization', 'Bearer');
 
@@ -142,7 +142,7 @@ describe('Configuration API key with header', function () {
     });
 
     it('returns null when API key does not exist', function () {
-        $config = new Configuration();
+        $config = new Configuration;
 
         expect($config->getApiKeyWithPrefix('NON_EXISTENT'))->toBeNull();
     });

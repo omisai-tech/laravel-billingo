@@ -1,13 +1,12 @@
 <?php
 
-use Omisai\Billingo\Models\Product;
 use Omisai\Billingo\Models\Currency;
+use Omisai\Billingo\Models\Product;
 use Omisai\Billingo\Models\Vat;
-use Omisai\Billingo\Models\Entitlement;
 
 describe('Product Model', function () {
     it('can be instantiated with empty data', function () {
-        $product = new Product();
+        $product = new Product;
 
         expect($product)->toBeInstanceOf(Product::class);
     });
@@ -31,7 +30,7 @@ describe('Product Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $product = new Product();
+        $product = new Product;
 
         $product->setId(456);
         $product->setName('Consulting Service');

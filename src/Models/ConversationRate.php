@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * ConversationRate Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConversationRate implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -62,7 +60,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         'from_currency' => '\Omisai\Billingo\Models\Currency',
         'to_currency' => '\Omisai\Billingo\Models\Currency',
         'conversation_rate' => 'float',
-        'date' => '\DateTime'
+        'date' => '\DateTime',
     ];
 
     /**
@@ -76,25 +74,25 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         'from_currency' => null,
         'to_currency' => null,
         'conversation_rate' => 'float',
-        'date' => 'date'
+        'date' => 'date',
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'from_currency' => false,
         'to_currency' => false,
         'conversation_rate' => false,
-        'date' => false
+        'date' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -120,8 +118,6 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -131,7 +127,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -141,7 +137,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -150,9 +146,6 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -161,9 +154,6 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -180,7 +170,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         'from_currency' => 'from_currency',
         'to_currency' => 'to_currency',
         'conversation_rate' => 'conversation_rate',
-        'date' => 'date'
+        'date' => 'date',
     ];
 
     /**
@@ -192,7 +182,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         'from_currency' => 'setFromCurrency',
         'to_currency' => 'setToCurrency',
         'conversation_rate' => 'setConversationRate',
-        'date' => 'setDate'
+        'date' => 'setDate',
     ];
 
     /**
@@ -204,7 +194,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         'from_currency' => 'getFromCurrency',
         'to_currency' => 'getToCurrency',
         'conversation_rate' => 'getConversationRate',
-        'date' => 'getDate'
+        'date' => 'getDate',
     ];
 
     /**
@@ -248,7 +238,6 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -259,8 +248,8 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -275,9 +264,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -311,11 +298,10 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets from_currency
      *
-     * @return \Omisai\Billingo\Models\Currency|null
+     * @return Currency|null
      */
     public function getFromCurrency()
     {
@@ -325,7 +311,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets from_currency
      *
-     * @param \Omisai\Billingo\Models\Currency|null $from_currency from_currency
+     * @param  Currency|null  $from_currency  from_currency
      *
      * @return self
      */
@@ -342,7 +328,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets to_currency
      *
-     * @return \Omisai\Billingo\Models\Currency|null
+     * @return Currency|null
      */
     public function getToCurrency()
     {
@@ -352,7 +338,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets to_currency
      *
-     * @param \Omisai\Billingo\Models\Currency|null $to_currency to_currency
+     * @param  Currency|null  $to_currency  to_currency
      *
      * @return self
      */
@@ -379,7 +365,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets conversation_rate
      *
-     * @param float|null $conversation_rate conversation_rate
+     * @param  float|null  $conversation_rate  conversation_rate
      *
      * @return self
      */
@@ -406,7 +392,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets date
      *
-     * @param \DateTime|null $date date
+     * @param  \DateTime|null  $date  date
      *
      * @return self
      */
@@ -419,12 +405,11 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -434,7 +419,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -447,10 +432,8 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -464,9 +447,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -478,7 +459,7 @@ class ConversationRate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

@@ -1,10 +1,10 @@
 <?php
 
+use Omisai\Billingo\Api\DocumentApi;
+use Omisai\Billingo\Api\PartnerApi;
+use Omisai\Billingo\Api\ProductApi;
 use Omisai\Billingo\Billingo;
 use Omisai\Billingo\Facades\Billingo as BillingoFacade;
-use Omisai\Billingo\Api\PartnerApi;
-use Omisai\Billingo\Api\DocumentApi;
-use Omisai\Billingo\Api\ProductApi;
 
 it('resolves facade to billingo instance', function () {
     $resolved = BillingoFacade::getFacadeRoot();

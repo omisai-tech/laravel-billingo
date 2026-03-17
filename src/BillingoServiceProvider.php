@@ -12,7 +12,7 @@ class BillingoServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/billingo.php',
+            __DIR__.'/../config/billingo.php',
             'billingo'
         );
 
@@ -49,10 +49,11 @@ class BillingoServiceProvider extends ServiceProvider
         foreach ($apis as $apiClass) {
             $this->app->bind($apiClass, function ($app) use ($apiClass) {
                 $billingo = $app->make(Billingo::class);
+
                 return new $apiClass(
                     $billingo->getClient(),
                     $billingo->getConfiguration(),
-                    new HeaderSelector()
+                    new HeaderSelector
                 );
             });
         }
@@ -65,7 +66,7 @@ class BillingoServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/billingo.php' => config_path('billingo.php'),
+                __DIR__.'/../config/billingo.php' => config_path('billingo.php'),
             ], 'billingo-config');
         }
     }

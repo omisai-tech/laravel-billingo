@@ -4,7 +4,7 @@ use Omisai\Billingo\HeaderSelector;
 
 describe('HeaderSelector', function () {
     beforeEach(function () {
-        $this->headerSelector = new HeaderSelector();
+        $this->headerSelector = new HeaderSelector;
     });
 
     it('can be instantiated', function () {

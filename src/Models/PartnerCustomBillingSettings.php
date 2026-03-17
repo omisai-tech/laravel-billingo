@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * PartnerCustomBillingSettings Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class PartnerCustomBillingSettings implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -64,7 +62,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => 'int',
         'document_currency' => '\Omisai\Billingo\Models\Currency',
         'template_language_code' => '\Omisai\Billingo\Models\DocumentLanguage',
-        'discount' => '\Omisai\Billingo\Models\Discount'
+        'discount' => '\Omisai\Billingo\Models\Discount',
     ];
 
     /**
@@ -80,13 +78,13 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => null,
         'document_currency' => null,
         'template_language_code' => null,
-        'discount' => null
+        'discount' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'payment_method' => false,
@@ -94,13 +92,13 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => false,
         'document_currency' => false,
         'template_language_code' => false,
-        'discount' => false
+        'discount' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -126,8 +124,6 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -137,7 +133,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -147,7 +143,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -156,9 +152,6 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -167,9 +160,6 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -188,7 +178,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => 'due_days',
         'document_currency' => 'document_currency',
         'template_language_code' => 'template_language_code',
-        'discount' => 'discount'
+        'discount' => 'discount',
     ];
 
     /**
@@ -202,7 +192,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => 'setDueDays',
         'document_currency' => 'setDocumentCurrency',
         'template_language_code' => 'setTemplateLanguageCode',
-        'discount' => 'setDiscount'
+        'discount' => 'setDiscount',
     ];
 
     /**
@@ -216,7 +206,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         'due_days' => 'getDueDays',
         'document_currency' => 'getDocumentCurrency',
         'template_language_code' => 'getTemplateLanguageCode',
-        'discount' => 'getDiscount'
+        'discount' => 'getDiscount',
     ];
 
     /**
@@ -260,7 +250,6 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -271,8 +260,8 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -289,9 +278,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -325,11 +312,10 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets payment_method
      *
-     * @return \Omisai\Billingo\Models\PaymentMethod|null
+     * @return PaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -339,7 +325,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets payment_method
      *
-     * @param \Omisai\Billingo\Models\PaymentMethod|null $payment_method payment_method
+     * @param  PaymentMethod|null  $payment_method  payment_method
      *
      * @return self
      */
@@ -356,7 +342,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets document_form
      *
-     * @return \Omisai\Billingo\Models\DocumentForm|null
+     * @return DocumentForm|null
      */
     public function getDocumentForm()
     {
@@ -366,7 +352,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets document_form
      *
-     * @param \Omisai\Billingo\Models\DocumentForm|null $document_form document_form
+     * @param  DocumentForm|null  $document_form  document_form
      *
      * @return self
      */
@@ -393,7 +379,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets due_days
      *
-     * @param int|null $due_days due_days
+     * @param  int|null  $due_days  due_days
      *
      * @return self
      */
@@ -410,7 +396,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets document_currency
      *
-     * @return \Omisai\Billingo\Models\Currency|null
+     * @return Currency|null
      */
     public function getDocumentCurrency()
     {
@@ -420,7 +406,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets document_currency
      *
-     * @param \Omisai\Billingo\Models\Currency|null $document_currency document_currency
+     * @param  Currency|null  $document_currency  document_currency
      *
      * @return self
      */
@@ -437,7 +423,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets template_language_code
      *
-     * @return \Omisai\Billingo\Models\DocumentLanguage|null
+     * @return DocumentLanguage|null
      */
     public function getTemplateLanguageCode()
     {
@@ -447,7 +433,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets template_language_code
      *
-     * @param \Omisai\Billingo\Models\DocumentLanguage|null $template_language_code template_language_code
+     * @param  DocumentLanguage|null  $template_language_code  template_language_code
      *
      * @return self
      */
@@ -464,7 +450,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets discount
      *
-     * @return \Omisai\Billingo\Models\Discount|null
+     * @return Discount|null
      */
     public function getDiscount()
     {
@@ -474,7 +460,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets discount
      *
-     * @param \Omisai\Billingo\Models\Discount|null $discount discount
+     * @param  Discount|null  $discount  discount
      *
      * @return self
      */
@@ -487,12 +473,11 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -502,7 +487,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -515,10 +500,8 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -532,9 +515,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -546,7 +527,7 @@ class PartnerCustomBillingSettings implements ModelInterface, ArrayAccess, \Json
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

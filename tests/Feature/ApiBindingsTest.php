@@ -1,6 +1,5 @@
 <?php
 
-use Omisai\Billingo\Billingo;
 use Omisai\Billingo\Api\BankAccountApi;
 use Omisai\Billingo\Api\CurrencyApi;
 use Omisai\Billingo\Api\DocumentApi;

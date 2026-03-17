@@ -1,16 +1,18 @@
 <?php
 
-use Omisai\Billingo\Billingo;
+use GuzzleHttp\ClientInterface;
+use Omisai\Billingo\Api\BankAccountApi;
+use Omisai\Billingo\Api\CurrencyApi;
+use Omisai\Billingo\Api\DocumentApi;
+use Omisai\Billingo\Api\DocumentBlockApi;
+use Omisai\Billingo\Api\DocumentExportApi;
+use Omisai\Billingo\Api\OrganizationApi;
 use Omisai\Billingo\Api\PartnerApi;
 use Omisai\Billingo\Api\ProductApi;
-use Omisai\Billingo\Api\DocumentApi;
-use Omisai\Billingo\Api\BankAccountApi;
-use Omisai\Billingo\Api\DocumentBlockApi;
-use Omisai\Billingo\Api\CurrencyApi;
-use Omisai\Billingo\Api\OrganizationApi;
 use Omisai\Billingo\Api\SpendingApi;
-use Omisai\Billingo\Api\DocumentExportApi;
 use Omisai\Billingo\Api\UtilApi;
+use Omisai\Billingo\Billingo;
+use Omisai\Billingo\Configuration;
 
 describe('Billingo API Accessors', function () {
     describe('Partner API', function () {
@@ -190,7 +192,7 @@ describe('API Configuration', function () {
             'api_key' => 'my-api-key',
         ]);
 
-        expect($billingo->getConfiguration())->toBeInstanceOf(\Omisai\Billingo\Configuration::class);
+        expect($billingo->getConfiguration())->toBeInstanceOf(Configuration::class);
     });
 
     it('exposes getClient method', function () {
@@ -198,7 +200,7 @@ describe('API Configuration', function () {
             'api_key' => 'my-api-key',
         ]);
 
-        expect($billingo->getClient())->toBeInstanceOf(\GuzzleHttp\ClientInterface::class);
+        expect($billingo->getClient())->toBeInstanceOf(ClientInterface::class);
     });
 
     it('can configure API key through configuration', function () {

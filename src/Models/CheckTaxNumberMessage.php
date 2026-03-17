@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * CheckTaxNumberMessage Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -66,7 +62,7 @@ class CheckTaxNumberMessage
             self::INVALID_TAX_NUMBER,
             self::NO_ONLINE_SZAMLA_SETTINGS,
             self::NON_EXIST_TAX_NUMBER,
-            self::VALIDATION_OK
+            self::VALIDATION_OK,
         ];
     }
 }

@@ -5,7 +5,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,13 +28,12 @@
 
 namespace Omisai\Billingo;
 
-use \Exception;
+use Exception;
 
 /**
  * ApiException Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -65,12 +63,12 @@ class ApiException extends Exception
     /**
      * Constructor
      *
-     * @param string                $message         Error message
-     * @param int                   $code            HTTP status code
-     * @param string[][]|null       $responseHeaders HTTP response header
-     * @param \stdClass|string|null $responseBody    HTTP decoded body of the server response either as \stdClass or string
+     * @param  string  $message  Error message
+     * @param  int  $code  HTTP status code
+     * @param  string[][]|null  $responseHeaders  HTTP response header
+     * @param  \stdClass|string|null  $responseBody  HTTP decoded body of the server response either as \stdClass or string
      */
-    public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null)
+    public function __construct($message = '', $code = 0, $responseHeaders = [], $responseBody = null)
     {
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
@@ -100,7 +98,7 @@ class ApiException extends Exception
     /**
      * Sets the deserialized response object (during deserialization)
      *
-     * @param mixed $obj Deserialized response object
+     * @param  mixed  $obj  Deserialized response object
      *
      * @return void
      */

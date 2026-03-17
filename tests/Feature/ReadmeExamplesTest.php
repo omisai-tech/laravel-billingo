@@ -1,25 +1,26 @@
 <?php
 
+use Omisai\Billingo\Api\PartnerApi;
 use Omisai\Billingo\Facades\Billingo;
-use Omisai\Billingo\Models\Partner;
 use Omisai\Billingo\Models\Address;
+use Omisai\Billingo\Models\BankAccount;
+use Omisai\Billingo\Models\Category;
 use Omisai\Billingo\Models\Country;
-use Omisai\Billingo\Models\PartnerTaxType;
-use Omisai\Billingo\Models\Product;
 use Omisai\Billingo\Models\Currency;
-use Omisai\Billingo\Models\Vat;
 use Omisai\Billingo\Models\DocumentInsert;
 use Omisai\Billingo\Models\DocumentInsertItemsInner;
 use Omisai\Billingo\Models\DocumentInsertType;
-use Omisai\Billingo\Models\PaymentMethod;
 use Omisai\Billingo\Models\DocumentLanguage;
-use Omisai\Billingo\Models\UnitPriceType;
-use Omisai\Billingo\Models\BankAccount;
-use Omisai\Billingo\Models\SpendingSave;
-use Omisai\Billingo\Models\SpendingPaymentMethod;
-use Omisai\Billingo\Models\Category;
-use Omisai\Billingo\Models\SendDocument;
+use Omisai\Billingo\Models\Partner;
+use Omisai\Billingo\Models\PartnerTaxType;
 use Omisai\Billingo\Models\PaymentHistory;
+use Omisai\Billingo\Models\PaymentMethod;
+use Omisai\Billingo\Models\Product;
+use Omisai\Billingo\Models\SendDocument;
+use Omisai\Billingo\Models\SpendingPaymentMethod;
+use Omisai\Billingo\Models\SpendingSave;
+use Omisai\Billingo\Models\UnitPriceType;
+use Omisai\Billingo\Models\Vat;
 
 describe('README Examples - Partners', function () {
     it('can create a partner with address as shown in README', function () {
@@ -53,7 +54,7 @@ describe('README Examples - Partners', function () {
         expect($partner->getAddress()->getAddress())->toBe('Sample Street 123');
 
         // Verify the partner API is available and has createPartner method
-        expect(Billingo::partner())->toBeInstanceOf(\Omisai\Billingo\Api\PartnerApi::class);
+        expect(Billingo::partner())->toBeInstanceOf(PartnerApi::class);
         expect(method_exists(Billingo::partner(), 'createPartner'))->toBeTrue();
     });
 

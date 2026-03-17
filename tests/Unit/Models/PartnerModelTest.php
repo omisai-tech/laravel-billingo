@@ -1,13 +1,13 @@
 <?php
 
-use Omisai\Billingo\Models\Partner;
 use Omisai\Billingo\Models\Address;
 use Omisai\Billingo\Models\Country;
+use Omisai\Billingo\Models\Partner;
 use Omisai\Billingo\Models\PartnerTaxType;
 
 describe('Partner Model', function () {
     it('can be instantiated with empty data', function () {
-        $partner = new Partner();
+        $partner = new Partner;
 
         expect($partner)->toBeInstanceOf(Partner::class);
     });
@@ -23,7 +23,7 @@ describe('Partner Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $partner = new Partner();
+        $partner = new Partner;
 
         $partner->setId(123);
         $partner->setName('Acme Corporation');
@@ -54,7 +54,7 @@ describe('Partner Model', function () {
             'address' => 'Test Street 1',
         ]);
 
-        $partner = new Partner();
+        $partner = new Partner;
         $partner->setAddress($address);
 
         expect($partner->getAddress())->toBeInstanceOf(Address::class);
@@ -131,7 +131,7 @@ describe('Address Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $address = new Address();
+        $address = new Address;
 
         $address->setCountryCode(Country::DE);
         $address->setCity('Berlin');

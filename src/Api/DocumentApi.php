@@ -5,7 +5,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -33,22 +32,42 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Utils;
 use Omisai\Billingo\ApiException;
 use Omisai\Billingo\Configuration;
-use Omisai\Billingo\FormDataProcessor;
 use Omisai\Billingo\HeaderSelector;
+use Omisai\Billingo\Models\ClientError;
+use Omisai\Billingo\Models\ClientErrorResponse;
+use Omisai\Billingo\Models\Document;
+use Omisai\Billingo\Models\DocumentCancellation;
+use Omisai\Billingo\Models\DocumentInsert;
+use Omisai\Billingo\Models\DocumentList;
+use Omisai\Billingo\Models\DocumentPublicUrl;
+use Omisai\Billingo\Models\DocumentType;
+use Omisai\Billingo\Models\InvoiceSettings;
+use Omisai\Billingo\Models\ModificationDocumentInsert;
+use Omisai\Billingo\Models\OnlineSzamlaStatus;
+use Omisai\Billingo\Models\PaymentHistory;
+use Omisai\Billingo\Models\PaymentMethod;
+use Omisai\Billingo\Models\PaymentStatus;
+use Omisai\Billingo\Models\ReceiptInsert;
+use Omisai\Billingo\Models\SendDocument;
+use Omisai\Billingo\Models\ServerErrorResponse;
+use Omisai\Billingo\Models\SubscriptionErrorResponse;
+use Omisai\Billingo\Models\TooManyRequestsResponse;
+use Omisai\Billingo\Models\ValidationErrorResponse;
 use Omisai\Billingo\ObjectSerializer;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * DocumentApi Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -74,7 +93,7 @@ class DocumentApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'archiveDocument' => [
             'application/json',
@@ -142,10 +161,7 @@ class DocumentApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param  int  $hostIndex  (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
@@ -153,16 +169,16 @@ class DocumentApi
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
+        $this->client = $client ?: new Client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
-        $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->headerSelector = $selector ?: new HeaderSelector;
         $this->hostIndex = $hostIndex;
     }
 
     /**
      * Set the host index
      *
-     * @param int $hostIndex Host index (required)
+     * @param  int  $hostIndex  Host index (required)
      */
     public function setHostIndex($hostIndex): void
     {
@@ -192,12 +208,12 @@ class DocumentApi
      *
      * Archive a proforma document.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function archiveDocument($id, string $contentType = self::contentTypes['archiveDocument'][0])
     {
@@ -209,12 +225,12 @@ class DocumentApi
      *
      * Archive a proforma document.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function archiveDocumentWithHttpInfo($id, string $contentType = self::contentTypes['archiveDocument'][0])
     {
@@ -242,7 +258,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -312,7 +327,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -322,11 +336,11 @@ class DocumentApi
      *
      * Archive a proforma document.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function archiveDocumentAsync($id, string $contentType = self::contentTypes['archiveDocument'][0])
     {
@@ -343,11 +357,11 @@ class DocumentApi
      *
      * Archive a proforma document.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function archiveDocumentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['archiveDocument'][0])
     {
@@ -357,7 +371,7 @@ class DocumentApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -380,11 +394,11 @@ class DocumentApi
     /**
      * Create request for operation 'archiveDocument'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['archiveDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function archiveDocumentRequest($id, string $contentType = self::contentTypes['archiveDocument'][0])
     {
@@ -396,7 +410,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/archive';
         $formParams = [];
         $queryParams = [];
@@ -404,20 +417,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -431,15 +441,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -465,9 +475,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -478,17 +489,18 @@ class DocumentApi
      *
      * Cancel a document
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\DocumentCancellation|null $document_cancellation Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  DocumentCancellation|null  $document_cancellation  Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function cancelDocument($id, $document_cancellation = null, string $contentType = self::contentTypes['cancelDocument'][0])
     {
-        list($response) = $this->cancelDocumentWithHttpInfo($id, $document_cancellation, $contentType);
+        [$response] = $this->cancelDocumentWithHttpInfo($id, $document_cancellation, $contentType);
+
         return $response;
     }
 
@@ -497,13 +509,13 @@ class DocumentApi
      *
      * Cancel a document
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentCancellation|null $document_cancellation Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentCancellation|null  $document_cancellation  Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function cancelDocumentWithHttpInfo($id, $document_cancellation = null, string $contentType = self::contentTypes['cancelDocument'][0])
     {
@@ -531,7 +543,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -588,8 +599,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -685,7 +694,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -695,12 +703,12 @@ class DocumentApi
      *
      * Cancel a document
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentCancellation|null $document_cancellation Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentCancellation|null  $document_cancellation  Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cancelDocumentAsync($id, $document_cancellation = null, string $contentType = self::contentTypes['cancelDocument'][0])
     {
@@ -717,12 +725,12 @@ class DocumentApi
      *
      * Cancel a document
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentCancellation|null $document_cancellation Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentCancellation|null  $document_cancellation  Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cancelDocumentAsyncWithHttpInfo($id, $document_cancellation = null, string $contentType = self::contentTypes['cancelDocument'][0])
     {
@@ -734,7 +742,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -745,7 +753,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -768,12 +776,12 @@ class DocumentApi
     /**
      * Create request for operation 'cancelDocument'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentCancellation|null $document_cancellation Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentCancellation|null  $document_cancellation  Comment and notifiable email addresses - comma separated for multiple email addresses (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['cancelDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function cancelDocumentRequest($id, $document_cancellation = null, string $contentType = self::contentTypes['cancelDocument'][0])
     {
@@ -785,8 +793,6 @@ class DocumentApi
             );
         }
 
-
-
         $resourcePath = '/documents/{id}/cancel';
         $formParams = [];
         $queryParams = [];
@@ -794,20 +800,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -815,8 +818,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($document_cancellation)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_cancellation));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_cancellation));
             } else {
                 $httpBody = $document_cancellation;
             }
@@ -828,15 +831,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -862,9 +865,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -875,16 +879,17 @@ class DocumentApi
      *
      * Create a document
      *
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function createDocument($document_insert, string $contentType = self::contentTypes['createDocument'][0])
     {
-        list($response) = $this->createDocumentWithHttpInfo($document_insert, $contentType);
+        [$response] = $this->createDocumentWithHttpInfo($document_insert, $contentType);
+
         return $response;
     }
 
@@ -893,12 +898,12 @@ class DocumentApi
      *
      * Create a document
      *
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createDocumentWithHttpInfo($document_insert, string $contentType = self::contentTypes['createDocument'][0])
     {
@@ -926,7 +931,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
@@ -977,8 +981,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1066,7 +1068,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1076,11 +1077,11 @@ class DocumentApi
      *
      * Create a document
      *
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentAsync($document_insert, string $contentType = self::contentTypes['createDocument'][0])
     {
@@ -1097,11 +1098,11 @@ class DocumentApi
      *
      * Create a document
      *
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentAsyncWithHttpInfo($document_insert, string $contentType = self::contentTypes['createDocument'][0])
     {
@@ -1113,7 +1114,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1124,7 +1125,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1147,11 +1148,11 @@ class DocumentApi
     /**
      * Create request for operation 'createDocument'
      *
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createDocumentRequest($document_insert, string $contentType = self::contentTypes['createDocument'][0])
     {
@@ -1163,7 +1164,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents';
         $formParams = [];
         $queryParams = [];
@@ -1171,12 +1171,8 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1184,8 +1180,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($document_insert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_insert));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_insert));
             } else {
                 $httpBody = $document_insert;
             }
@@ -1197,15 +1193,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1231,9 +1227,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1244,17 +1241,18 @@ class DocumentApi
      *
      * Converts a draft to an invoice.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function createDocumentFromDraft($id, $document_insert, string $contentType = self::contentTypes['createDocumentFromDraft'][0])
     {
-        list($response) = $this->createDocumentFromDraftWithHttpInfo($id, $document_insert, $contentType);
+        [$response] = $this->createDocumentFromDraftWithHttpInfo($id, $document_insert, $contentType);
+
         return $response;
     }
 
@@ -1263,13 +1261,13 @@ class DocumentApi
      *
      * Converts a draft to an invoice.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createDocumentFromDraftWithHttpInfo($id, $document_insert, string $contentType = self::contentTypes['createDocumentFromDraft'][0])
     {
@@ -1297,7 +1295,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -1354,8 +1351,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1451,7 +1446,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1461,12 +1455,12 @@ class DocumentApi
      *
      * Converts a draft to an invoice.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentFromDraftAsync($id, $document_insert, string $contentType = self::contentTypes['createDocumentFromDraft'][0])
     {
@@ -1483,12 +1477,12 @@ class DocumentApi
      *
      * Converts a draft to an invoice.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentFromDraftAsyncWithHttpInfo($id, $document_insert, string $contentType = self::contentTypes['createDocumentFromDraft'][0])
     {
@@ -1500,7 +1494,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1511,7 +1505,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1534,12 +1528,12 @@ class DocumentApi
     /**
      * Create request for operation 'createDocumentFromDraft'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\DocumentInsert $document_insert DocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  DocumentInsert  $document_insert  DocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromDraft'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createDocumentFromDraftRequest($id, $document_insert, string $contentType = self::contentTypes['createDocumentFromDraft'][0])
     {
@@ -1558,7 +1552,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1566,20 +1559,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1587,8 +1577,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($document_insert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_insert));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($document_insert));
             } else {
                 $httpBody = $document_insert;
             }
@@ -1600,15 +1590,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1634,9 +1624,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1647,17 +1638,18 @@ class DocumentApi
      *
      * Create a document from proforma.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\InvoiceSettings|null $invoice_settings InvoiceSettings object. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  InvoiceSettings|null  $invoice_settings  InvoiceSettings object. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function createDocumentFromProforma($id, $invoice_settings = null, string $contentType = self::contentTypes['createDocumentFromProforma'][0])
     {
-        list($response) = $this->createDocumentFromProformaWithHttpInfo($id, $invoice_settings, $contentType);
+        [$response] = $this->createDocumentFromProformaWithHttpInfo($id, $invoice_settings, $contentType);
+
         return $response;
     }
 
@@ -1666,13 +1658,13 @@ class DocumentApi
      *
      * Create a document from proforma.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\InvoiceSettings|null $invoice_settings InvoiceSettings object. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  InvoiceSettings|null  $invoice_settings  InvoiceSettings object. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createDocumentFromProformaWithHttpInfo($id, $invoice_settings = null, string $contentType = self::contentTypes['createDocumentFromProforma'][0])
     {
@@ -1700,7 +1692,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
@@ -1757,8 +1748,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1854,7 +1843,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1864,12 +1852,12 @@ class DocumentApi
      *
      * Create a document from proforma.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\InvoiceSettings|null $invoice_settings InvoiceSettings object. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  InvoiceSettings|null  $invoice_settings  InvoiceSettings object. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentFromProformaAsync($id, $invoice_settings = null, string $contentType = self::contentTypes['createDocumentFromProforma'][0])
     {
@@ -1886,12 +1874,12 @@ class DocumentApi
      *
      * Create a document from proforma.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\InvoiceSettings|null $invoice_settings InvoiceSettings object. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  InvoiceSettings|null  $invoice_settings  InvoiceSettings object. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createDocumentFromProformaAsyncWithHttpInfo($id, $invoice_settings = null, string $contentType = self::contentTypes['createDocumentFromProforma'][0])
     {
@@ -1903,7 +1891,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1914,7 +1902,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1937,12 +1925,12 @@ class DocumentApi
     /**
      * Create request for operation 'createDocumentFromProforma'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\InvoiceSettings|null $invoice_settings InvoiceSettings object. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  InvoiceSettings|null  $invoice_settings  InvoiceSettings object. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createDocumentFromProforma'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createDocumentFromProformaRequest($id, $invoice_settings = null, string $contentType = self::contentTypes['createDocumentFromProforma'][0])
     {
@@ -1954,8 +1942,6 @@ class DocumentApi
             );
         }
 
-
-
         $resourcePath = '/documents/{id}/create-from-proforma';
         $formParams = [];
         $queryParams = [];
@@ -1963,20 +1949,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1984,8 +1967,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($invoice_settings)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($invoice_settings));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($invoice_settings));
             } else {
                 $httpBody = $invoice_settings;
             }
@@ -1997,15 +1980,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2031,9 +2014,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2044,17 +2028,18 @@ class DocumentApi
      *
      * Create a modification document.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\ModificationDocumentInsert $modification_document_insert ModificationDocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  ModificationDocumentInsert  $modification_document_insert  ModificationDocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function createModificationDocument($id, $modification_document_insert, string $contentType = self::contentTypes['createModificationDocument'][0])
     {
-        list($response) = $this->createModificationDocumentWithHttpInfo($id, $modification_document_insert, $contentType);
+        [$response] = $this->createModificationDocumentWithHttpInfo($id, $modification_document_insert, $contentType);
+
         return $response;
     }
 
@@ -2063,13 +2048,13 @@ class DocumentApi
      *
      * Create a modification document.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ModificationDocumentInsert $modification_document_insert ModificationDocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ModificationDocumentInsert  $modification_document_insert  ModificationDocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createModificationDocumentWithHttpInfo($id, $modification_document_insert, string $contentType = self::contentTypes['createModificationDocument'][0])
     {
@@ -2097,7 +2082,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
@@ -2154,8 +2138,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2251,7 +2233,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -2261,12 +2242,12 @@ class DocumentApi
      *
      * Create a modification document.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ModificationDocumentInsert $modification_document_insert ModificationDocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ModificationDocumentInsert  $modification_document_insert  ModificationDocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createModificationDocumentAsync($id, $modification_document_insert, string $contentType = self::contentTypes['createModificationDocument'][0])
     {
@@ -2283,12 +2264,12 @@ class DocumentApi
      *
      * Create a modification document.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ModificationDocumentInsert $modification_document_insert ModificationDocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ModificationDocumentInsert  $modification_document_insert  ModificationDocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createModificationDocumentAsyncWithHttpInfo($id, $modification_document_insert, string $contentType = self::contentTypes['createModificationDocument'][0])
     {
@@ -2300,7 +2281,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -2311,7 +2292,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -2334,12 +2315,12 @@ class DocumentApi
     /**
      * Create request for operation 'createModificationDocument'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ModificationDocumentInsert $modification_document_insert ModificationDocumentInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ModificationDocumentInsert  $modification_document_insert  ModificationDocumentInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createModificationDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createModificationDocumentRequest($id, $modification_document_insert, string $contentType = self::contentTypes['createModificationDocument'][0])
     {
@@ -2358,7 +2339,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/create-modification-document';
         $formParams = [];
         $queryParams = [];
@@ -2366,20 +2346,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -2387,8 +2364,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($modification_document_insert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($modification_document_insert));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($modification_document_insert));
             } else {
                 $httpBody = $modification_document_insert;
             }
@@ -2400,15 +2377,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2434,9 +2411,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2447,16 +2425,17 @@ class DocumentApi
      *
      * Create a receipt
      *
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function createReceipt($receipt_insert, string $contentType = self::contentTypes['createReceipt'][0])
     {
-        list($response) = $this->createReceiptWithHttpInfo($receipt_insert, $contentType);
+        [$response] = $this->createReceiptWithHttpInfo($receipt_insert, $contentType);
+
         return $response;
     }
 
@@ -2465,12 +2444,12 @@ class DocumentApi
      *
      * Create a receipt
      *
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createReceiptWithHttpInfo($receipt_insert, string $contentType = self::contentTypes['createReceipt'][0])
     {
@@ -2498,7 +2477,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
@@ -2549,8 +2527,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2638,7 +2614,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -2648,11 +2623,11 @@ class DocumentApi
      *
      * Create a receipt
      *
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createReceiptAsync($receipt_insert, string $contentType = self::contentTypes['createReceipt'][0])
     {
@@ -2669,11 +2644,11 @@ class DocumentApi
      *
      * Create a receipt
      *
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createReceiptAsyncWithHttpInfo($receipt_insert, string $contentType = self::contentTypes['createReceipt'][0])
     {
@@ -2685,7 +2660,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -2696,7 +2671,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -2719,11 +2694,11 @@ class DocumentApi
     /**
      * Create request for operation 'createReceipt'
      *
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceipt'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createReceiptRequest($receipt_insert, string $contentType = self::contentTypes['createReceipt'][0])
     {
@@ -2735,7 +2710,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/receipt';
         $formParams = [];
         $queryParams = [];
@@ -2743,12 +2717,8 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -2756,8 +2726,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($receipt_insert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($receipt_insert));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($receipt_insert));
             } else {
                 $httpBody = $receipt_insert;
             }
@@ -2769,15 +2739,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2803,9 +2773,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2816,17 +2787,18 @@ class DocumentApi
      *
      * Converts a draft to a receipt.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function createReceiptFromDraft($id, $receipt_insert, string $contentType = self::contentTypes['createReceiptFromDraft'][0])
     {
-        list($response) = $this->createReceiptFromDraftWithHttpInfo($id, $receipt_insert, $contentType);
+        [$response] = $this->createReceiptFromDraftWithHttpInfo($id, $receipt_insert, $contentType);
+
         return $response;
     }
 
@@ -2835,13 +2807,13 @@ class DocumentApi
      *
      * Converts a draft to a receipt.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function createReceiptFromDraftWithHttpInfo($id, $receipt_insert, string $contentType = self::contentTypes['createReceiptFromDraft'][0])
     {
@@ -2869,7 +2841,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -2926,8 +2897,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -3023,7 +2992,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -3033,12 +3001,12 @@ class DocumentApi
      *
      * Converts a draft to a receipt.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createReceiptFromDraftAsync($id, $receipt_insert, string $contentType = self::contentTypes['createReceiptFromDraft'][0])
     {
@@ -3055,12 +3023,12 @@ class DocumentApi
      *
      * Converts a draft to a receipt.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createReceiptFromDraftAsyncWithHttpInfo($id, $receipt_insert, string $contentType = self::contentTypes['createReceiptFromDraft'][0])
     {
@@ -3072,7 +3040,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -3083,7 +3051,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -3106,12 +3074,12 @@ class DocumentApi
     /**
      * Create request for operation 'createReceiptFromDraft'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\ReceiptInsert $receipt_insert ReceiptInsert object that you would like to store. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  ReceiptInsert  $receipt_insert  ReceiptInsert object that you would like to store. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['createReceiptFromDraft'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function createReceiptFromDraftRequest($id, $receipt_insert, string $contentType = self::contentTypes['createReceiptFromDraft'][0])
     {
@@ -3130,7 +3098,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/receipt/{id}';
         $formParams = [];
         $queryParams = [];
@@ -3138,20 +3105,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -3159,8 +3123,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($receipt_insert)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($receipt_insert));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($receipt_insert));
             } else {
                 $httpBody = $receipt_insert;
             }
@@ -3172,15 +3136,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3206,9 +3170,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -3219,12 +3184,12 @@ class DocumentApi
      *
      * Delete a draft.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function deleteDocument($id, string $contentType = self::contentTypes['deleteDocument'][0])
     {
@@ -3236,12 +3201,12 @@ class DocumentApi
      *
      * Delete a draft.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function deleteDocumentWithHttpInfo($id, string $contentType = self::contentTypes['deleteDocument'][0])
     {
@@ -3268,7 +3233,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -3331,7 +3295,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -3341,11 +3304,11 @@ class DocumentApi
      *
      * Delete a draft.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteDocumentAsync($id, string $contentType = self::contentTypes['deleteDocument'][0])
     {
@@ -3362,11 +3325,11 @@ class DocumentApi
      *
      * Delete a draft.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteDocumentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteDocument'][0])
     {
@@ -3376,7 +3339,7 @@ class DocumentApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -3399,11 +3362,11 @@ class DocumentApi
     /**
      * Create request for operation 'deleteDocument'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deleteDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteDocumentRequest($id, string $contentType = self::contentTypes['deleteDocument'][0])
     {
@@ -3415,7 +3378,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
@@ -3423,20 +3385,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -3450,15 +3409,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3484,9 +3443,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -3497,16 +3457,17 @@ class DocumentApi
      *
      * Delete all payment history on document
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return PaymentHistory[]|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function deletePayment($id, string $contentType = self::contentTypes['deletePayment'][0])
     {
-        list($response) = $this->deletePaymentWithHttpInfo($id, $contentType);
+        [$response] = $this->deletePaymentWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -3515,12 +3476,12 @@ class DocumentApi
      *
      * Delete all payment history on document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function deletePaymentWithHttpInfo($id, string $contentType = self::contentTypes['deletePayment'][0])
     {
@@ -3547,7 +3508,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -3599,8 +3559,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -3688,7 +3646,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -3698,11 +3655,11 @@ class DocumentApi
      *
      * Delete all payment history on document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deletePaymentAsync($id, string $contentType = self::contentTypes['deletePayment'][0])
     {
@@ -3719,11 +3676,11 @@ class DocumentApi
      *
      * Delete all payment history on document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deletePaymentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePayment'][0])
     {
@@ -3735,7 +3692,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -3746,7 +3703,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -3769,11 +3726,11 @@ class DocumentApi
     /**
      * Create request for operation 'deletePayment'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['deletePayment'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function deletePaymentRequest($id, string $contentType = self::contentTypes['deletePayment'][0])
     {
@@ -3785,7 +3742,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/payments';
         $formParams = [];
         $queryParams = [];
@@ -3793,20 +3749,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -3820,15 +3773,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3854,9 +3807,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -3867,16 +3821,17 @@ class DocumentApi
      *
      * Copy a document
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function documentCopy($id, string $contentType = self::contentTypes['documentCopy'][0])
     {
-        list($response) = $this->documentCopyWithHttpInfo($id, $contentType);
+        [$response] = $this->documentCopyWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -3885,12 +3840,12 @@ class DocumentApi
      *
      * Copy a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function documentCopyWithHttpInfo($id, string $contentType = self::contentTypes['documentCopy'][0])
     {
@@ -3917,7 +3872,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -3975,8 +3929,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4072,7 +4024,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -4082,11 +4033,11 @@ class DocumentApi
      *
      * Copy a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function documentCopyAsync($id, string $contentType = self::contentTypes['documentCopy'][0])
     {
@@ -4103,11 +4054,11 @@ class DocumentApi
      *
      * Copy a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function documentCopyAsyncWithHttpInfo($id, string $contentType = self::contentTypes['documentCopy'][0])
     {
@@ -4119,7 +4070,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -4130,7 +4081,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -4153,11 +4104,11 @@ class DocumentApi
     /**
      * Create request for operation 'documentCopy'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['documentCopy'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function documentCopyRequest($id, string $contentType = self::contentTypes['documentCopy'][0])
     {
@@ -4169,7 +4120,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/copy';
         $formParams = [];
         $queryParams = [];
@@ -4177,20 +4127,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -4204,15 +4151,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4238,9 +4185,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -4251,16 +4199,17 @@ class DocumentApi
      *
      * Download a document in PDF format.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return \SplFileObject|ClientError|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Omisai\Billingo\Models\ClientError|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function downloadDocument($id, string $contentType = self::contentTypes['downloadDocument'][0])
     {
-        list($response) = $this->downloadDocumentWithHttpInfo($id, $contentType);
+        [$response] = $this->downloadDocumentWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -4269,12 +4218,12 @@ class DocumentApi
      *
      * Download a document in PDF format.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Omisai\Billingo\Models\ClientError|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function downloadDocumentWithHttpInfo($id, string $contentType = self::contentTypes['downloadDocument'][0])
     {
@@ -4301,7 +4250,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -4359,8 +4307,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4456,7 +4402,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -4466,11 +4411,11 @@ class DocumentApi
      *
      * Download a document in PDF format.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function downloadDocumentAsync($id, string $contentType = self::contentTypes['downloadDocument'][0])
     {
@@ -4487,11 +4432,11 @@ class DocumentApi
      *
      * Download a document in PDF format.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function downloadDocumentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['downloadDocument'][0])
     {
@@ -4503,7 +4448,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -4514,7 +4459,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -4537,11 +4482,11 @@ class DocumentApi
     /**
      * Create request for operation 'downloadDocument'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['downloadDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function downloadDocumentRequest($id, string $contentType = self::contentTypes['downloadDocument'][0])
     {
@@ -4553,7 +4498,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/download';
         $formParams = [];
         $queryParams = [];
@@ -4561,20 +4505,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/pdf', 'application/json',],
+            ['application/pdf', 'application/json'],
             $contentType,
             $multipart
         );
@@ -4588,15 +4529,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4622,9 +4563,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -4635,16 +4577,17 @@ class DocumentApi
      *
      * Retrieve a document
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function getDocument($id, string $contentType = self::contentTypes['getDocument'][0])
     {
-        list($response) = $this->getDocumentWithHttpInfo($id, $contentType);
+        [$response] = $this->getDocumentWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -4653,12 +4596,12 @@ class DocumentApi
      *
      * Retrieve a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getDocumentWithHttpInfo($id, string $contentType = self::contentTypes['getDocument'][0])
     {
@@ -4686,7 +4629,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -4737,8 +4679,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4826,7 +4766,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -4836,11 +4775,11 @@ class DocumentApi
      *
      * Retrieve a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getDocumentAsync($id, string $contentType = self::contentTypes['getDocument'][0])
     {
@@ -4857,11 +4796,11 @@ class DocumentApi
      *
      * Retrieve a document
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getDocumentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getDocument'][0])
     {
@@ -4873,7 +4812,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -4884,7 +4823,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -4907,11 +4846,11 @@ class DocumentApi
     /**
      * Create request for operation 'getDocument'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getDocumentRequest($id, string $contentType = self::contentTypes['getDocument'][0])
     {
@@ -4923,7 +4862,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
@@ -4931,20 +4869,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -4958,15 +4893,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4992,9 +4927,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -5005,16 +4941,17 @@ class DocumentApi
      *
      * Retrieve a document by vendor id
      *
-     * @param  string $vendor_id vendor_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
+     * @param  string  $vendor_id  vendor_id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Document|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function getDocumentByVendorId($vendor_id, string $contentType = self::contentTypes['getDocumentByVendorId'][0])
     {
-        list($response) = $this->getDocumentByVendorIdWithHttpInfo($vendor_id, $contentType);
+        [$response] = $this->getDocumentByVendorIdWithHttpInfo($vendor_id, $contentType);
+
         return $response;
     }
 
@@ -5023,12 +4960,12 @@ class DocumentApi
      *
      * Retrieve a document by vendor id
      *
-     * @param  string $vendor_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
+     * @param  string  $vendor_id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Document|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getDocumentByVendorIdWithHttpInfo($vendor_id, string $contentType = self::contentTypes['getDocumentByVendorId'][0])
     {
@@ -5056,7 +4993,6 @@ class DocumentApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -5101,8 +5037,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -5182,7 +5116,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -5192,11 +5125,11 @@ class DocumentApi
      *
      * Retrieve a document by vendor id
      *
-     * @param  string $vendor_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
+     * @param  string  $vendor_id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getDocumentByVendorIdAsync($vendor_id, string $contentType = self::contentTypes['getDocumentByVendorId'][0])
     {
@@ -5213,11 +5146,11 @@ class DocumentApi
      *
      * Retrieve a document by vendor id
      *
-     * @param  string $vendor_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
+     * @param  string  $vendor_id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getDocumentByVendorIdAsyncWithHttpInfo($vendor_id, string $contentType = self::contentTypes['getDocumentByVendorId'][0])
     {
@@ -5229,7 +5162,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -5240,7 +5173,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -5263,11 +5196,11 @@ class DocumentApi
     /**
      * Create request for operation 'getDocumentByVendorId'
      *
-     * @param  string $vendor_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
+     * @param  string  $vendor_id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getDocumentByVendorId'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getDocumentByVendorIdRequest($vendor_id, string $contentType = self::contentTypes['getDocumentByVendorId'][0])
     {
@@ -5279,7 +5212,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/vendor/{vendor_id}';
         $formParams = [];
         $queryParams = [];
@@ -5287,20 +5219,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($vendor_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'vendor_id' . '}',
+                '{'.'vendor_id'.'}',
                 ObjectSerializer::toPathValue($vendor_id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -5314,15 +5243,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5348,9 +5277,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -5361,16 +5291,17 @@ class DocumentApi
      *
      * Retrieve a document Online Számla status
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return OnlineSzamlaStatus|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\OnlineSzamlaStatus|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function getOnlineSzamlaStatus($id, string $contentType = self::contentTypes['getOnlineSzamlaStatus'][0])
     {
-        list($response) = $this->getOnlineSzamlaStatusWithHttpInfo($id, $contentType);
+        [$response] = $this->getOnlineSzamlaStatusWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -5379,12 +5310,12 @@ class DocumentApi
      *
      * Retrieve a document Online Számla status
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\OnlineSzamlaStatus|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getOnlineSzamlaStatusWithHttpInfo($id, string $contentType = self::contentTypes['getOnlineSzamlaStatus'][0])
     {
@@ -5411,7 +5342,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -5463,8 +5393,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -5552,7 +5480,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -5562,11 +5489,11 @@ class DocumentApi
      *
      * Retrieve a document Online Számla status
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getOnlineSzamlaStatusAsync($id, string $contentType = self::contentTypes['getOnlineSzamlaStatus'][0])
     {
@@ -5583,11 +5510,11 @@ class DocumentApi
      *
      * Retrieve a document Online Számla status
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getOnlineSzamlaStatusAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getOnlineSzamlaStatus'][0])
     {
@@ -5599,7 +5526,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -5610,7 +5537,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -5633,11 +5560,11 @@ class DocumentApi
     /**
      * Create request for operation 'getOnlineSzamlaStatus'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getOnlineSzamlaStatus'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getOnlineSzamlaStatusRequest($id, string $contentType = self::contentTypes['getOnlineSzamlaStatus'][0])
     {
@@ -5649,7 +5576,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/online-szamla';
         $formParams = [];
         $queryParams = [];
@@ -5657,20 +5583,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -5684,15 +5607,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5718,9 +5641,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -5731,16 +5655,17 @@ class DocumentApi
      *
      * Retrieve a payment histroy
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return PaymentHistory[]|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function getPayment($id, string $contentType = self::contentTypes['getPayment'][0])
     {
-        list($response) = $this->getPaymentWithHttpInfo($id, $contentType);
+        [$response] = $this->getPaymentWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -5749,12 +5674,12 @@ class DocumentApi
      *
      * Retrieve a payment histroy
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getPaymentWithHttpInfo($id, string $contentType = self::contentTypes['getPayment'][0])
     {
@@ -5781,7 +5706,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -5833,8 +5757,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -5922,7 +5844,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -5932,11 +5853,11 @@ class DocumentApi
      *
      * Retrieve a payment histroy
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPaymentAsync($id, string $contentType = self::contentTypes['getPayment'][0])
     {
@@ -5953,11 +5874,11 @@ class DocumentApi
      *
      * Retrieve a payment histroy
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPaymentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPayment'][0])
     {
@@ -5969,7 +5890,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -5980,7 +5901,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -6003,11 +5924,11 @@ class DocumentApi
     /**
      * Create request for operation 'getPayment'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPayment'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getPaymentRequest($id, string $contentType = self::contentTypes['getPayment'][0])
     {
@@ -6019,7 +5940,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/payments';
         $formParams = [];
         $queryParams = [];
@@ -6027,20 +5947,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -6054,15 +5971,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6088,9 +6005,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -6101,16 +6019,17 @@ class DocumentApi
      *
      * Retrieve a document download public url.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return DocumentPublicUrl|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\DocumentPublicUrl|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function getPublicUrl($id, string $contentType = self::contentTypes['getPublicUrl'][0])
     {
-        list($response) = $this->getPublicUrlWithHttpInfo($id, $contentType);
+        [$response] = $this->getPublicUrlWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -6119,12 +6038,12 @@ class DocumentApi
      *
      * Retrieve a document download public url.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\DocumentPublicUrl|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function getPublicUrlWithHttpInfo($id, string $contentType = self::contentTypes['getPublicUrl'][0])
     {
@@ -6151,7 +6070,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -6203,8 +6121,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -6292,7 +6208,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -6302,11 +6217,11 @@ class DocumentApi
      *
      * Retrieve a document download public url.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPublicUrlAsync($id, string $contentType = self::contentTypes['getPublicUrl'][0])
     {
@@ -6323,11 +6238,11 @@ class DocumentApi
      *
      * Retrieve a document download public url.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPublicUrlAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPublicUrl'][0])
     {
@@ -6339,7 +6254,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -6350,7 +6265,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -6373,11 +6288,11 @@ class DocumentApi
     /**
      * Create request for operation 'getPublicUrl'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['getPublicUrl'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function getPublicUrlRequest($id, string $contentType = self::contentTypes['getPublicUrl'][0])
     {
@@ -6389,7 +6304,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/public-url';
         $formParams = [];
         $queryParams = [];
@@ -6397,20 +6311,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -6424,15 +6335,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6458,9 +6369,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -6471,34 +6383,35 @@ class DocumentApi
      *
      * List all documents
      *
-     * @param  int|null $page page (optional)
-     * @param  int|null $per_page per_page (optional, default to 25)
-     * @param  int|null $block_id Filter documents by the identifier of your DocumentBlock. (optional)
-     * @param  int|null $partner_id Filter documents by the identifier of your Partner. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_method Filter documents by PaymentMethod value. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatus|null $payment_status Filter documents by PaymentStatus value. (optional)
-     * @param  \DateTime|null $start_date Filter documents by their invoice date. (optional)
-     * @param  \DateTime|null $end_date Filter documents by their invoice date. (optional)
-     * @param  int|null $start_number Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
-     * @param  int|null $end_number Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
-     * @param  int|null $start_year Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
-     * @param  int|null $end_year Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
-     * @param  \Omisai\Billingo\Models\DocumentType|null $type Filter documents by type (optional)
-     * @param  string|null $query Filter documents by the given text (optional)
-     * @param  \DateTime|null $paid_start_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $paid_end_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $fulfillment_start_date Filter documents by their fulfillment date. (optional)
-     * @param  \DateTime|null $fulfillment_end_date Filter documents by their fulfillment date. (optional)
-     * @param  string|null $last_modified_date Filter documents by their last modified date. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
+     * @param  int|null  $page  page (optional)
+     * @param  int|null  $per_page  per_page (optional, default to 25)
+     * @param  int|null  $block_id  Filter documents by the identifier of your DocumentBlock. (optional)
+     * @param  int|null  $partner_id  Filter documents by the identifier of your Partner. (optional)
+     * @param  PaymentMethod|null  $payment_method  Filter documents by PaymentMethod value. (optional)
+     * @param  PaymentStatus|null  $payment_status  Filter documents by PaymentStatus value. (optional)
+     * @param  \DateTime|null  $start_date  Filter documents by their invoice date. (optional)
+     * @param  \DateTime|null  $end_date  Filter documents by their invoice date. (optional)
+     * @param  int|null  $start_number  Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
+     * @param  int|null  $end_number  Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
+     * @param  int|null  $start_year  Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
+     * @param  int|null  $end_year  Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
+     * @param  DocumentType|null  $type  Filter documents by type (optional)
+     * @param  string|null  $query  Filter documents by the given text (optional)
+     * @param  \DateTime|null  $paid_start_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $paid_end_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $fulfillment_start_date  Filter documents by their fulfillment date. (optional)
+     * @param  \DateTime|null  $fulfillment_end_date  Filter documents by their fulfillment date. (optional)
+     * @param  string|null  $last_modified_date  Filter documents by their last modified date. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return DocumentList|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\DocumentList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function listDocument($page = null, $per_page = 25, $block_id = null, $partner_id = null, $payment_method = null, $payment_status = null, $start_date = null, $end_date = null, $start_number = null, $end_number = null, $start_year = null, $end_year = null, $type = null, $query = null, $paid_start_date = null, $paid_end_date = null, $fulfillment_start_date = null, $fulfillment_end_date = null, $last_modified_date = null, string $contentType = self::contentTypes['listDocument'][0])
     {
-        list($response) = $this->listDocumentWithHttpInfo($page, $per_page, $block_id, $partner_id, $payment_method, $payment_status, $start_date, $end_date, $start_number, $end_number, $start_year, $end_year, $type, $query, $paid_start_date, $paid_end_date, $fulfillment_start_date, $fulfillment_end_date, $last_modified_date, $contentType);
+        [$response] = $this->listDocumentWithHttpInfo($page, $per_page, $block_id, $partner_id, $payment_method, $payment_status, $start_date, $end_date, $start_number, $end_number, $start_year, $end_year, $type, $query, $paid_start_date, $paid_end_date, $fulfillment_start_date, $fulfillment_end_date, $last_modified_date, $contentType);
+
         return $response;
     }
 
@@ -6507,30 +6420,30 @@ class DocumentApi
      *
      * List all documents
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  int|null $block_id Filter documents by the identifier of your DocumentBlock. (optional)
-     * @param  int|null $partner_id Filter documents by the identifier of your Partner. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_method Filter documents by PaymentMethod value. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatus|null $payment_status Filter documents by PaymentStatus value. (optional)
-     * @param  \DateTime|null $start_date Filter documents by their invoice date. (optional)
-     * @param  \DateTime|null $end_date Filter documents by their invoice date. (optional)
-     * @param  int|null $start_number Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
-     * @param  int|null $end_number Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
-     * @param  int|null $start_year Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
-     * @param  int|null $end_year Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
-     * @param  \Omisai\Billingo\Models\DocumentType|null $type Filter documents by type (optional)
-     * @param  string|null $query Filter documents by the given text (optional)
-     * @param  \DateTime|null $paid_start_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $paid_end_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $fulfillment_start_date Filter documents by their fulfillment date. (optional)
-     * @param  \DateTime|null $fulfillment_end_date Filter documents by their fulfillment date. (optional)
-     * @param  string|null $last_modified_date Filter documents by their last modified date. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  int|null  $block_id  Filter documents by the identifier of your DocumentBlock. (optional)
+     * @param  int|null  $partner_id  Filter documents by the identifier of your Partner. (optional)
+     * @param  PaymentMethod|null  $payment_method  Filter documents by PaymentMethod value. (optional)
+     * @param  PaymentStatus|null  $payment_status  Filter documents by PaymentStatus value. (optional)
+     * @param  \DateTime|null  $start_date  Filter documents by their invoice date. (optional)
+     * @param  \DateTime|null  $end_date  Filter documents by their invoice date. (optional)
+     * @param  int|null  $start_number  Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
+     * @param  int|null  $end_number  Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
+     * @param  int|null  $start_year  Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
+     * @param  int|null  $end_year  Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
+     * @param  DocumentType|null  $type  Filter documents by type (optional)
+     * @param  string|null  $query  Filter documents by the given text (optional)
+     * @param  \DateTime|null  $paid_start_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $paid_end_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $fulfillment_start_date  Filter documents by their fulfillment date. (optional)
+     * @param  \DateTime|null  $fulfillment_end_date  Filter documents by their fulfillment date. (optional)
+     * @param  string|null  $last_modified_date  Filter documents by their last modified date. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\DocumentList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function listDocumentWithHttpInfo($page = null, $per_page = 25, $block_id = null, $partner_id = null, $payment_method = null, $payment_status = null, $start_date = null, $end_date = null, $start_number = null, $end_number = null, $start_year = null, $end_year = null, $type = null, $query = null, $paid_start_date = null, $paid_end_date = null, $fulfillment_start_date = null, $fulfillment_end_date = null, $last_modified_date = null, string $contentType = self::contentTypes['listDocument'][0])
     {
@@ -6557,7 +6470,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -6603,8 +6515,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -6684,7 +6594,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -6694,29 +6603,29 @@ class DocumentApi
      *
      * List all documents
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  int|null $block_id Filter documents by the identifier of your DocumentBlock. (optional)
-     * @param  int|null $partner_id Filter documents by the identifier of your Partner. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_method Filter documents by PaymentMethod value. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatus|null $payment_status Filter documents by PaymentStatus value. (optional)
-     * @param  \DateTime|null $start_date Filter documents by their invoice date. (optional)
-     * @param  \DateTime|null $end_date Filter documents by their invoice date. (optional)
-     * @param  int|null $start_number Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
-     * @param  int|null $end_number Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
-     * @param  int|null $start_year Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
-     * @param  int|null $end_year Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
-     * @param  \Omisai\Billingo\Models\DocumentType|null $type Filter documents by type (optional)
-     * @param  string|null $query Filter documents by the given text (optional)
-     * @param  \DateTime|null $paid_start_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $paid_end_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $fulfillment_start_date Filter documents by their fulfillment date. (optional)
-     * @param  \DateTime|null $fulfillment_end_date Filter documents by their fulfillment date. (optional)
-     * @param  string|null $last_modified_date Filter documents by their last modified date. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  int|null  $block_id  Filter documents by the identifier of your DocumentBlock. (optional)
+     * @param  int|null  $partner_id  Filter documents by the identifier of your Partner. (optional)
+     * @param  PaymentMethod|null  $payment_method  Filter documents by PaymentMethod value. (optional)
+     * @param  PaymentStatus|null  $payment_status  Filter documents by PaymentStatus value. (optional)
+     * @param  \DateTime|null  $start_date  Filter documents by their invoice date. (optional)
+     * @param  \DateTime|null  $end_date  Filter documents by their invoice date. (optional)
+     * @param  int|null  $start_number  Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
+     * @param  int|null  $end_number  Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
+     * @param  int|null  $start_year  Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
+     * @param  int|null  $end_year  Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
+     * @param  DocumentType|null  $type  Filter documents by type (optional)
+     * @param  string|null  $query  Filter documents by the given text (optional)
+     * @param  \DateTime|null  $paid_start_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $paid_end_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $fulfillment_start_date  Filter documents by their fulfillment date. (optional)
+     * @param  \DateTime|null  $fulfillment_end_date  Filter documents by their fulfillment date. (optional)
+     * @param  string|null  $last_modified_date  Filter documents by their last modified date. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listDocumentAsync($page = null, $per_page = 25, $block_id = null, $partner_id = null, $payment_method = null, $payment_status = null, $start_date = null, $end_date = null, $start_number = null, $end_number = null, $start_year = null, $end_year = null, $type = null, $query = null, $paid_start_date = null, $paid_end_date = null, $fulfillment_start_date = null, $fulfillment_end_date = null, $last_modified_date = null, string $contentType = self::contentTypes['listDocument'][0])
     {
@@ -6733,29 +6642,29 @@ class DocumentApi
      *
      * List all documents
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  int|null $block_id Filter documents by the identifier of your DocumentBlock. (optional)
-     * @param  int|null $partner_id Filter documents by the identifier of your Partner. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_method Filter documents by PaymentMethod value. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatus|null $payment_status Filter documents by PaymentStatus value. (optional)
-     * @param  \DateTime|null $start_date Filter documents by their invoice date. (optional)
-     * @param  \DateTime|null $end_date Filter documents by their invoice date. (optional)
-     * @param  int|null $start_number Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
-     * @param  int|null $end_number Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
-     * @param  int|null $start_year Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
-     * @param  int|null $end_year Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
-     * @param  \Omisai\Billingo\Models\DocumentType|null $type Filter documents by type (optional)
-     * @param  string|null $query Filter documents by the given text (optional)
-     * @param  \DateTime|null $paid_start_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $paid_end_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $fulfillment_start_date Filter documents by their fulfillment date. (optional)
-     * @param  \DateTime|null $fulfillment_end_date Filter documents by their fulfillment date. (optional)
-     * @param  string|null $last_modified_date Filter documents by their last modified date. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  int|null  $block_id  Filter documents by the identifier of your DocumentBlock. (optional)
+     * @param  int|null  $partner_id  Filter documents by the identifier of your Partner. (optional)
+     * @param  PaymentMethod|null  $payment_method  Filter documents by PaymentMethod value. (optional)
+     * @param  PaymentStatus|null  $payment_status  Filter documents by PaymentStatus value. (optional)
+     * @param  \DateTime|null  $start_date  Filter documents by their invoice date. (optional)
+     * @param  \DateTime|null  $end_date  Filter documents by their invoice date. (optional)
+     * @param  int|null  $start_number  Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
+     * @param  int|null  $end_number  Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
+     * @param  int|null  $start_year  Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
+     * @param  int|null  $end_year  Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
+     * @param  DocumentType|null  $type  Filter documents by type (optional)
+     * @param  string|null  $query  Filter documents by the given text (optional)
+     * @param  \DateTime|null  $paid_start_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $paid_end_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $fulfillment_start_date  Filter documents by their fulfillment date. (optional)
+     * @param  \DateTime|null  $fulfillment_end_date  Filter documents by their fulfillment date. (optional)
+     * @param  string|null  $last_modified_date  Filter documents by their last modified date. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listDocumentAsyncWithHttpInfo($page = null, $per_page = 25, $block_id = null, $partner_id = null, $payment_method = null, $payment_status = null, $start_date = null, $end_date = null, $start_number = null, $end_number = null, $start_year = null, $end_year = null, $type = null, $query = null, $paid_start_date = null, $paid_end_date = null, $fulfillment_start_date = null, $fulfillment_end_date = null, $last_modified_date = null, string $contentType = self::contentTypes['listDocument'][0])
     {
@@ -6767,7 +6676,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -6778,7 +6687,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -6801,33 +6710,32 @@ class DocumentApi
     /**
      * Create request for operation 'listDocument'
      *
-     * @param  int|null $page (optional)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  int|null $block_id Filter documents by the identifier of your DocumentBlock. (optional)
-     * @param  int|null $partner_id Filter documents by the identifier of your Partner. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_method Filter documents by PaymentMethod value. (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatus|null $payment_status Filter documents by PaymentStatus value. (optional)
-     * @param  \DateTime|null $start_date Filter documents by their invoice date. (optional)
-     * @param  \DateTime|null $end_date Filter documents by their invoice date. (optional)
-     * @param  int|null $start_number Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
-     * @param  int|null $end_number Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
-     * @param  int|null $start_year Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
-     * @param  int|null $end_year Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
-     * @param  \Omisai\Billingo\Models\DocumentType|null $type Filter documents by type (optional)
-     * @param  string|null $query Filter documents by the given text (optional)
-     * @param  \DateTime|null $paid_start_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $paid_end_date Filter documents by their payment date. (optional)
-     * @param  \DateTime|null $fulfillment_start_date Filter documents by their fulfillment date. (optional)
-     * @param  \DateTime|null $fulfillment_end_date Filter documents by their fulfillment date. (optional)
-     * @param  string|null $last_modified_date Filter documents by their last modified date. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
+     * @param  int|null  $page  (optional)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  int|null  $block_id  Filter documents by the identifier of your DocumentBlock. (optional)
+     * @param  int|null  $partner_id  Filter documents by the identifier of your Partner. (optional)
+     * @param  PaymentMethod|null  $payment_method  Filter documents by PaymentMethod value. (optional)
+     * @param  PaymentStatus|null  $payment_status  Filter documents by PaymentStatus value. (optional)
+     * @param  \DateTime|null  $start_date  Filter documents by their invoice date. (optional)
+     * @param  \DateTime|null  $end_date  Filter documents by their invoice date. (optional)
+     * @param  int|null  $start_number  Starting number of the document, should not contain year or any other formatting. Required if &#x60;start_year&#x60; given (optional)
+     * @param  int|null  $end_number  Ending number of the document, should not contain year or any other formatting. Required if &#x60;end_year&#x60; given (optional)
+     * @param  int|null  $start_year  Year for &#x60;start_number&#x60; parameter. Required if &#x60;start_number&#x60; given. (optional)
+     * @param  int|null  $end_year  Year for &#x60;end_number&#x60; parameter. Required if &#x60;end_number&#x60; given. (optional)
+     * @param  DocumentType|null  $type  Filter documents by type (optional)
+     * @param  string|null  $query  Filter documents by the given text (optional)
+     * @param  \DateTime|null  $paid_start_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $paid_end_date  Filter documents by their payment date. (optional)
+     * @param  \DateTime|null  $fulfillment_start_date  Filter documents by their fulfillment date. (optional)
+     * @param  \DateTime|null  $fulfillment_end_date  Filter documents by their fulfillment date. (optional)
+     * @param  string|null  $last_modified_date  Filter documents by their last modified date. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['listDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function listDocumentRequest($page = null, $per_page = 25, $block_id = null, $partner_id = null, $payment_method = null, $payment_status = null, $start_date = null, $end_date = null, $start_number = null, $end_number = null, $start_year = null, $end_year = null, $type = null, $query = null, $paid_start_date = null, $paid_end_date = null, $fulfillment_start_date = null, $fulfillment_end_date = null, $last_modified_date = null, string $contentType = self::contentTypes['listDocument'][0])
     {
-
 
         if ($per_page !== null && $per_page > 100) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling DocumentApi.listDocument, must be smaller than or equal to 100.');
@@ -6835,24 +6743,6 @@ class DocumentApi
         if ($per_page !== null && $per_page < 1) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling DocumentApi.listDocument, must be bigger than or equal to 1.');
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         $resourcePath = '/documents';
         $formParams = [];
@@ -7033,11 +6923,8 @@ class DocumentApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -7051,15 +6938,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -7085,9 +6972,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -7098,17 +6986,18 @@ class DocumentApi
      *
      * Returns a printable POS PDF
      *
-     * @param  int $id id (required)
-     * @param  float $size In which size the POS PDF should be rendered. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  float  $size  In which size the POS PDF should be rendered. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return \SplFileObject|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function posPrint($id, $size, string $contentType = self::contentTypes['posPrint'][0])
     {
-        list($response) = $this->posPrintWithHttpInfo($id, $size, $contentType);
+        [$response] = $this->posPrintWithHttpInfo($id, $size, $contentType);
+
         return $response;
     }
 
@@ -7117,13 +7006,13 @@ class DocumentApi
      *
      * Returns a printable POS PDF
      *
-     * @param  int $id (required)
-     * @param  float $size In which size the POS PDF should be rendered. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  float  $size  In which size the POS PDF should be rendered. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function posPrintWithHttpInfo($id, $size, string $contentType = self::contentTypes['posPrint'][0])
     {
@@ -7150,7 +7039,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -7202,8 +7090,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -7291,7 +7177,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -7301,12 +7186,12 @@ class DocumentApi
      *
      * Returns a printable POS PDF
      *
-     * @param  int $id (required)
-     * @param  float $size In which size the POS PDF should be rendered. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  float  $size  In which size the POS PDF should be rendered. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function posPrintAsync($id, $size, string $contentType = self::contentTypes['posPrint'][0])
     {
@@ -7323,12 +7208,12 @@ class DocumentApi
      *
      * Returns a printable POS PDF
      *
-     * @param  int $id (required)
-     * @param  float $size In which size the POS PDF should be rendered. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  float  $size  In which size the POS PDF should be rendered. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function posPrintAsyncWithHttpInfo($id, $size, string $contentType = self::contentTypes['posPrint'][0])
     {
@@ -7340,7 +7225,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -7351,7 +7236,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -7374,12 +7259,12 @@ class DocumentApi
     /**
      * Create request for operation 'posPrint'
      *
-     * @param  int $id (required)
-     * @param  float $size In which size the POS PDF should be rendered. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  float  $size  In which size the POS PDF should be rendered. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['posPrint'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function posPrintRequest($id, $size, string $contentType = self::contentTypes['posPrint'][0])
     {
@@ -7398,7 +7283,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/print/pos';
         $formParams = [];
         $queryParams = [];
@@ -7416,19 +7300,17 @@ class DocumentApi
             true // required
         ) ?? []);
 
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/pdf', 'application/json',],
+            ['application/pdf', 'application/json'],
             $contentType,
             $multipart
         );
@@ -7442,15 +7324,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -7476,9 +7358,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -7489,17 +7372,18 @@ class DocumentApi
      *
      * Send invoice to given email adresses.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\SendDocument|null $send_document List of email-s where you want to send the invoice. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  SendDocument|null  $send_document  List of email-s where you want to send the invoice. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return SendDocument|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\SendDocument|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function sendDocument($id, $send_document = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
-        list($response) = $this->sendDocumentWithHttpInfo($id, $send_document, $contentType);
+        [$response] = $this->sendDocumentWithHttpInfo($id, $send_document, $contentType);
+
         return $response;
     }
 
@@ -7508,13 +7392,13 @@ class DocumentApi
      *
      * Send invoice to given email adresses.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SendDocument|null $send_document List of email-s where you want to send the invoice. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SendDocument|null  $send_document  List of email-s where you want to send the invoice. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\SendDocument|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function sendDocumentWithHttpInfo($id, $send_document = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7541,7 +7425,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -7599,8 +7482,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -7696,7 +7577,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -7706,12 +7586,12 @@ class DocumentApi
      *
      * Send invoice to given email adresses.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SendDocument|null $send_document List of email-s where you want to send the invoice. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SendDocument|null  $send_document  List of email-s where you want to send the invoice. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function sendDocumentAsync($id, $send_document = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7728,12 +7608,12 @@ class DocumentApi
      *
      * Send invoice to given email adresses.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SendDocument|null $send_document List of email-s where you want to send the invoice. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SendDocument|null  $send_document  List of email-s where you want to send the invoice. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function sendDocumentAsyncWithHttpInfo($id, $send_document = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7745,7 +7625,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -7756,7 +7636,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -7779,12 +7659,12 @@ class DocumentApi
     /**
      * Create request for operation 'sendDocument'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SendDocument|null $send_document List of email-s where you want to send the invoice. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SendDocument|null  $send_document  List of email-s where you want to send the invoice. (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['sendDocument'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function sendDocumentRequest($id, $send_document = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7796,8 +7676,6 @@ class DocumentApi
             );
         }
 
-
-
         $resourcePath = '/documents/{id}/send';
         $formParams = [];
         $queryParams = [];
@@ -7805,20 +7683,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -7826,8 +7701,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($send_document)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_document));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_document));
             } else {
                 $httpBody = $send_document;
             }
@@ -7839,15 +7714,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -7873,9 +7748,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -7886,17 +7762,18 @@ class DocumentApi
      *
      * Update payment history
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\PaymentHistory[] $payment_history Payment history object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  PaymentHistory[]  $payment_history  Payment history object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return PaymentHistory[]|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function updatePayment($id, $payment_history, string $contentType = self::contentTypes['updatePayment'][0])
     {
-        list($response) = $this->updatePaymentWithHttpInfo($id, $payment_history, $contentType);
+        [$response] = $this->updatePaymentWithHttpInfo($id, $payment_history, $contentType);
+
         return $response;
     }
 
@@ -7905,13 +7782,13 @@ class DocumentApi
      *
      * Update payment history
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\PaymentHistory[] $payment_history Payment history object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  PaymentHistory[]  $payment_history  Payment history object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\PaymentHistory[]|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function updatePaymentWithHttpInfo($id, $payment_history, string $contentType = self::contentTypes['updatePayment'][0])
     {
@@ -7938,7 +7815,6 @@ class DocumentApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -7996,8 +7872,6 @@ class DocumentApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -8093,7 +7967,6 @@ class DocumentApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -8103,12 +7976,12 @@ class DocumentApi
      *
      * Update payment history
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\PaymentHistory[] $payment_history Payment history object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  PaymentHistory[]  $payment_history  Payment history object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updatePaymentAsync($id, $payment_history, string $contentType = self::contentTypes['updatePayment'][0])
     {
@@ -8125,12 +7998,12 @@ class DocumentApi
      *
      * Update payment history
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\PaymentHistory[] $payment_history Payment history object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  PaymentHistory[]  $payment_history  Payment history object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updatePaymentAsyncWithHttpInfo($id, $payment_history, string $contentType = self::contentTypes['updatePayment'][0])
     {
@@ -8142,7 +8015,7 @@ class DocumentApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -8153,7 +8026,7 @@ class DocumentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -8176,12 +8049,12 @@ class DocumentApi
     /**
      * Create request for operation 'updatePayment'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\PaymentHistory[] $payment_history Payment history object that you would like to update. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  PaymentHistory[]  $payment_history  Payment history object that you would like to update. (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['updatePayment'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function updatePaymentRequest($id, $payment_history, string $contentType = self::contentTypes['updatePayment'][0])
     {
@@ -8200,7 +8073,6 @@ class DocumentApi
             );
         }
 
-
         $resourcePath = '/documents/{id}/payments';
         $formParams = [];
         $queryParams = [];
@@ -8208,20 +8080,17 @@ class DocumentApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -8229,8 +8098,8 @@ class DocumentApi
         // for model (json/xml)
         if (isset($payment_history)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($payment_history));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($payment_history));
             } else {
                 $httpBody = $payment_history;
             }
@@ -8242,15 +8111,15 @@ class DocumentApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -8276,9 +8145,10 @@ class DocumentApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -8287,8 +8157,8 @@ class DocumentApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
      * @return array of http client options
+     * @throws \RuntimeException on file opening failure
      */
     protected function createHttpClientOption()
     {
@@ -8296,7 +8166,7 @@ class DocumentApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -8317,7 +8187,7 @@ class DocumentApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
@@ -8340,7 +8210,7 @@ class DocumentApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
@@ -8348,8 +8218,8 @@ class DocumentApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
+        $left = (int) ($rangeCode[0].'00');
+        $right = (int) ($rangeCode[0].'99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

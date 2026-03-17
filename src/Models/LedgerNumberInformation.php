@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * LedgerNumberInformation Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSerializable
+class LedgerNumberInformation implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -62,7 +60,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         'bevetel' => 'string',
         'vevo' => 'string',
         'penztar' => 'string',
-        'afa' => 'string'
+        'afa' => 'string',
     ];
 
     /**
@@ -76,25 +74,25 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         'bevetel' => null,
         'vevo' => null,
         'penztar' => null,
-        'afa' => null
+        'afa' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'bevetel' => false,
         'vevo' => false,
         'penztar' => false,
-        'afa' => false
+        'afa' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -120,8 +118,6 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -131,7 +127,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -141,7 +137,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -150,9 +146,6 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -161,9 +154,6 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -180,7 +170,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         'bevetel' => 'bevetel',
         'vevo' => 'vevo',
         'penztar' => 'penztar',
-        'afa' => 'afa'
+        'afa' => 'afa',
     ];
 
     /**
@@ -192,7 +182,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         'bevetel' => 'setBevetel',
         'vevo' => 'setVevo',
         'penztar' => 'setPenztar',
-        'afa' => 'setAfa'
+        'afa' => 'setAfa',
     ];
 
     /**
@@ -204,7 +194,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         'bevetel' => 'getBevetel',
         'vevo' => 'getVevo',
         'penztar' => 'getPenztar',
-        'afa' => 'getAfa'
+        'afa' => 'getAfa',
     ];
 
     /**
@@ -248,7 +238,6 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -259,8 +248,8 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -275,9 +264,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -311,7 +298,6 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets bevetel
      *
@@ -325,7 +311,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets bevetel
      *
-     * @param string|null $bevetel bevetel
+     * @param  string|null  $bevetel  bevetel
      *
      * @return self
      */
@@ -352,7 +338,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets vevo
      *
-     * @param string|null $vevo vevo
+     * @param  string|null  $vevo  vevo
      *
      * @return self
      */
@@ -379,7 +365,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets penztar
      *
-     * @param string|null $penztar penztar
+     * @param  string|null  $penztar  penztar
      *
      * @return self
      */
@@ -406,7 +392,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets afa
      *
-     * @param string|null $afa afa
+     * @param  string|null  $afa  afa
      *
      * @return self
      */
@@ -419,12 +405,11 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -434,7 +419,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -447,10 +432,8 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -464,9 +447,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -478,7 +459,7 @@ class LedgerNumberInformation implements ModelInterface, ArrayAccess, \JsonSeria
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

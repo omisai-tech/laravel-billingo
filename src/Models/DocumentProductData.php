@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentProductData Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentProductData implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -66,7 +64,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => 'string',
         'vat' => '\Omisai\Billingo\Models\Vat',
         'comment' => 'string',
-        'entitlement' => '\Omisai\Billingo\Models\Entitlement'
+        'entitlement' => '\Omisai\Billingo\Models\Entitlement',
     ];
 
     /**
@@ -84,13 +82,13 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => null,
         'vat' => null,
         'comment' => null,
-        'entitlement' => null
+        'entitlement' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'name' => false,
@@ -100,13 +98,13 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => false,
         'vat' => false,
         'comment' => false,
-        'entitlement' => false
+        'entitlement' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -132,8 +130,6 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -143,7 +139,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -153,7 +149,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -162,9 +158,6 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -173,9 +166,6 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -196,7 +186,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => 'unit',
         'vat' => 'vat',
         'comment' => 'comment',
-        'entitlement' => 'entitlement'
+        'entitlement' => 'entitlement',
     ];
 
     /**
@@ -212,7 +202,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => 'setUnit',
         'vat' => 'setVat',
         'comment' => 'setComment',
-        'entitlement' => 'setEntitlement'
+        'entitlement' => 'setEntitlement',
     ];
 
     /**
@@ -228,7 +218,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         'unit' => 'getUnit',
         'vat' => 'getVat',
         'comment' => 'getComment',
-        'entitlement' => 'getEntitlement'
+        'entitlement' => 'getEntitlement',
     ];
 
     /**
@@ -272,7 +262,6 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -283,8 +272,8 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -303,9 +292,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -343,6 +330,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['vat'] === null) {
             $invalidProperties[] = "'vat' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -357,7 +345,6 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets name
      *
@@ -371,7 +358,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param  string  $name  name
      *
      * @return self
      */
@@ -398,7 +385,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets unit_price
      *
-     * @param float $unit_price unit_price
+     * @param  float  $unit_price  unit_price
      *
      * @return self
      */
@@ -415,7 +402,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets unit_price_type
      *
-     * @return \Omisai\Billingo\Models\UnitPriceType
+     * @return UnitPriceType
      */
     public function getUnitPriceType()
     {
@@ -425,7 +412,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets unit_price_type
      *
-     * @param \Omisai\Billingo\Models\UnitPriceType $unit_price_type unit_price_type
+     * @param  UnitPriceType  $unit_price_type  unit_price_type
      *
      * @return self
      */
@@ -452,7 +439,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets quantity
      *
-     * @param float $quantity quantity
+     * @param  float  $quantity  quantity
      *
      * @return self
      */
@@ -479,7 +466,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets unit
      *
-     * @param string $unit unit
+     * @param  string  $unit  unit
      *
      * @return self
      */
@@ -496,7 +483,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets vat
      *
-     * @return \Omisai\Billingo\Models\Vat
+     * @return Vat
      */
     public function getVat()
     {
@@ -506,7 +493,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets vat
      *
-     * @param \Omisai\Billingo\Models\Vat $vat vat
+     * @param  Vat  $vat  vat
      *
      * @return self
      */
@@ -533,7 +520,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets comment
      *
-     * @param string|null $comment comment
+     * @param  string|null  $comment  comment
      *
      * @return self
      */
@@ -550,7 +537,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets entitlement
      *
-     * @return \Omisai\Billingo\Models\Entitlement|null
+     * @return Entitlement|null
      */
     public function getEntitlement()
     {
@@ -560,7 +547,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets entitlement
      *
-     * @param \Omisai\Billingo\Models\Entitlement|null $entitlement entitlement
+     * @param  Entitlement|null  $entitlement  entitlement
      *
      * @return self
      */
@@ -573,12 +560,11 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -588,7 +574,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -601,10 +587,8 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -618,9 +602,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -632,7 +614,7 @@ class DocumentProductData implements ModelInterface, ArrayAccess, \JsonSerializa
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

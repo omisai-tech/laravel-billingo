@@ -1,14 +1,14 @@
 <?php
 
-use Omisai\Billingo\Models\SendDocument;
-use Omisai\Billingo\Models\PaymentHistory;
-use Omisai\Billingo\Models\PaymentMethod;
 use Omisai\Billingo\Models\DocumentCancellation;
 use Omisai\Billingo\Models\InvoiceSettings;
+use Omisai\Billingo\Models\PaymentHistory;
+use Omisai\Billingo\Models\PaymentMethod;
+use Omisai\Billingo\Models\SendDocument;
 
 describe('SendDocument Model', function () {
     it('can be instantiated with empty data', function () {
-        $sendDocument = new SendDocument();
+        $sendDocument = new SendDocument;
 
         expect($sendDocument)->toBeInstanceOf(SendDocument::class);
     });
@@ -22,7 +22,7 @@ describe('SendDocument Model', function () {
     });
 
     it('can set and get emails', function () {
-        $sendDocument = new SendDocument();
+        $sendDocument = new SendDocument;
         $sendDocument->setEmails(['test@example.com']);
 
         expect($sendDocument->getEmails())->toBe(['test@example.com']);
@@ -52,7 +52,7 @@ describe('SendDocument Model', function () {
 
 describe('PaymentHistory Model', function () {
     it('can be instantiated with empty data', function () {
-        $payment = new PaymentHistory();
+        $payment = new PaymentHistory;
 
         expect($payment)->toBeInstanceOf(PaymentHistory::class);
     });
@@ -69,7 +69,7 @@ describe('PaymentHistory Model', function () {
     });
 
     it('can set and get all properties', function () {
-        $payment = new PaymentHistory();
+        $payment = new PaymentHistory;
         $date = new DateTime('2024-01-15');
 
         $payment->setDate($date);
@@ -109,7 +109,7 @@ describe('PaymentHistory Model', function () {
 
 describe('DocumentCancellation Model', function () {
     it('can be instantiated with empty data', function () {
-        $cancellation = new DocumentCancellation();
+        $cancellation = new DocumentCancellation;
 
         expect($cancellation)->toBeInstanceOf(DocumentCancellation::class);
     });
@@ -136,7 +136,7 @@ describe('DocumentCancellation Model', function () {
 
 describe('InvoiceSettings Model', function () {
     it('can be instantiated with empty data', function () {
-        $settings = new InvoiceSettings();
+        $settings = new InvoiceSettings;
 
         expect($settings)->toBeInstanceOf(InvoiceSettings::class);
     });
@@ -155,7 +155,7 @@ describe('InvoiceSettings Model', function () {
     });
 
     it('can set and get dates', function () {
-        $settings = new InvoiceSettings();
+        $settings = new InvoiceSettings;
         $fulfillmentDate = new DateTime('2024-01-15');
         $dueDate = new DateTime('2024-02-15');
 

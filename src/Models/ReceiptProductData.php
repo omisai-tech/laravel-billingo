@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * ReceiptProductData Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializable
+class ReceiptProductData implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -61,7 +59,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'name' => 'string',
         'unit_price' => 'float',
-        'vat' => '\Omisai\Billingo\Models\Vat'
+        'vat' => '\Omisai\Billingo\Models\Vat',
     ];
 
     /**
@@ -74,24 +72,24 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'name' => null,
         'unit_price' => 'float',
-        'vat' => null
+        'vat' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'name' => false,
         'unit_price' => false,
-        'vat' => false
+        'vat' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -117,8 +115,6 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -128,7 +124,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -138,7 +134,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -147,9 +143,6 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -158,9 +151,6 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -176,7 +166,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'name' => 'name',
         'unit_price' => 'unit_price',
-        'vat' => 'vat'
+        'vat' => 'vat',
     ];
 
     /**
@@ -187,7 +177,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'name' => 'setName',
         'unit_price' => 'setUnitPrice',
-        'vat' => 'setVat'
+        'vat' => 'setVat',
     ];
 
     /**
@@ -198,7 +188,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'name' => 'getName',
         'unit_price' => 'getUnitPrice',
-        'vat' => 'getVat'
+        'vat' => 'getVat',
     ];
 
     /**
@@ -242,7 +232,6 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -253,8 +242,8 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -268,9 +257,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -296,6 +283,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['vat'] === null) {
             $invalidProperties[] = "'vat' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -310,7 +298,6 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets name
      *
@@ -324,7 +311,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param  string|null  $name  name
      *
      * @return self
      */
@@ -351,7 +338,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets unit_price
      *
-     * @param float $unit_price unit_price
+     * @param  float  $unit_price  unit_price
      *
      * @return self
      */
@@ -368,7 +355,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets vat
      *
-     * @return \Omisai\Billingo\Models\Vat
+     * @return Vat
      */
     public function getVat()
     {
@@ -378,7 +365,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets vat
      *
-     * @param \Omisai\Billingo\Models\Vat $vat vat
+     * @param  Vat  $vat  vat
      *
      * @return self
      */
@@ -391,12 +378,11 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -406,7 +392,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -419,10 +405,8 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -436,9 +420,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -450,7 +432,7 @@ class ReceiptProductData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

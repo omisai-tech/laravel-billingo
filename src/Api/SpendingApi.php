@@ -5,7 +5,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -33,22 +32,36 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Utils;
 use Omisai\Billingo\ApiException;
 use Omisai\Billingo\Configuration;
-use Omisai\Billingo\FormDataProcessor;
 use Omisai\Billingo\HeaderSelector;
+use Omisai\Billingo\Models\Category;
+use Omisai\Billingo\Models\ClientErrorResponse;
+use Omisai\Billingo\Models\Currency;
+use Omisai\Billingo\Models\DateType;
+use Omisai\Billingo\Models\PaymentMethod;
+use Omisai\Billingo\Models\PaymentStatusSpending;
+use Omisai\Billingo\Models\ServerErrorResponse;
+use Omisai\Billingo\Models\Source;
+use Omisai\Billingo\Models\Spending;
+use Omisai\Billingo\Models\SpendingList;
+use Omisai\Billingo\Models\SpendingSave;
+use Omisai\Billingo\Models\SubscriptionErrorResponse;
+use Omisai\Billingo\Models\TooManyRequestsResponse;
+use Omisai\Billingo\Models\ValidationErrorResponse;
 use Omisai\Billingo\ObjectSerializer;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * SpendingApi Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -74,7 +87,7 @@ class SpendingApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'spendingDelete' => [
             'application/json',
@@ -94,10 +107,7 @@ class SpendingApi
     ];
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
-     * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param  int  $hostIndex  (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ?ClientInterface $client = null,
@@ -105,16 +115,16 @@ class SpendingApi
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
+        $this->client = $client ?: new Client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
-        $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->headerSelector = $selector ?: new HeaderSelector;
         $this->hostIndex = $hostIndex;
     }
 
     /**
      * Set the host index
      *
-     * @param int $hostIndex Host index (required)
+     * @param  int  $hostIndex  Host index (required)
      */
     public function setHostIndex($hostIndex): void
     {
@@ -144,12 +154,12 @@ class SpendingApi
      *
      * Deletes a spending.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingDelete($id, string $contentType = self::contentTypes['spendingDelete'][0])
     {
@@ -161,12 +171,12 @@ class SpendingApi
      *
      * Deletes a spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingDeleteWithHttpInfo($id, string $contentType = self::contentTypes['spendingDelete'][0])
     {
@@ -193,7 +203,6 @@ class SpendingApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -256,7 +265,6 @@ class SpendingApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -266,11 +274,11 @@ class SpendingApi
      *
      * Deletes a spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingDeleteAsync($id, string $contentType = self::contentTypes['spendingDelete'][0])
     {
@@ -287,11 +295,11 @@ class SpendingApi
      *
      * Deletes a spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['spendingDelete'][0])
     {
@@ -301,7 +309,7 @@ class SpendingApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) {
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
@@ -324,11 +332,11 @@ class SpendingApi
     /**
      * Create request for operation 'spendingDelete'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingDelete'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function spendingDeleteRequest($id, string $contentType = self::contentTypes['spendingDelete'][0])
     {
@@ -340,7 +348,6 @@ class SpendingApi
             );
         }
 
-
         $resourcePath = '/spendings/{id}';
         $formParams = [];
         $queryParams = [];
@@ -348,20 +355,17 @@ class SpendingApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -375,15 +379,15 @@ class SpendingApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -409,9 +413,10 @@ class SpendingApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -422,26 +427,27 @@ class SpendingApi
      *
      * Lists all spending
      *
-     * @param  string|null $q q (optional, default to '')
-     * @param  int|null $page page (optional, default to 1)
-     * @param  int|null $per_page per_page (optional, default to 25)
-     * @param  \Omisai\Billingo\Models\DateType|null $spending_date spending_date (optional)
-     * @param  string|null $start_date start_date (optional)
-     * @param  string|null $end_date end_date (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatusSpending|null $payment_status payment_status (optional)
-     * @param  \Omisai\Billingo\Models\Source|null $spending_type spending_type (optional)
-     * @param  \Omisai\Billingo\Models\Category|null $categories categories (optional)
-     * @param  \Omisai\Billingo\Models\Currency|null $currencies currencies (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_methods payment_methods (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
+     * @param  string|null  $q  q (optional, default to '')
+     * @param  int|null  $page  page (optional, default to 1)
+     * @param  int|null  $per_page  per_page (optional, default to 25)
+     * @param  DateType|null  $spending_date  spending_date (optional)
+     * @param  string|null  $start_date  start_date (optional)
+     * @param  string|null  $end_date  end_date (optional)
+     * @param  PaymentStatusSpending|null  $payment_status  payment_status (optional)
+     * @param  Source|null  $spending_type  spending_type (optional)
+     * @param  Category|null  $categories  categories (optional)
+     * @param  Currency|null  $currencies  currencies (optional)
+     * @param  PaymentMethod|null  $payment_methods  payment_methods (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return SpendingList|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\SpendingList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function spendingList($q = '', $page = 1, $per_page = 25, $spending_date = null, $start_date = null, $end_date = null, $payment_status = null, $spending_type = null, $categories = null, $currencies = null, $payment_methods = null, string $contentType = self::contentTypes['spendingList'][0])
     {
-        list($response) = $this->spendingListWithHttpInfo($q, $page, $per_page, $spending_date, $start_date, $end_date, $payment_status, $spending_type, $categories, $currencies, $payment_methods, $contentType);
+        [$response] = $this->spendingListWithHttpInfo($q, $page, $per_page, $spending_date, $start_date, $end_date, $payment_status, $spending_type, $categories, $currencies, $payment_methods, $contentType);
+
         return $response;
     }
 
@@ -450,22 +456,22 @@ class SpendingApi
      *
      * Lists all spending
      *
-     * @param  string|null $q (optional, default to '')
-     * @param  int|null $page (optional, default to 1)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  \Omisai\Billingo\Models\DateType|null $spending_date (optional)
-     * @param  string|null $start_date (optional)
-     * @param  string|null $end_date (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatusSpending|null $payment_status (optional)
-     * @param  \Omisai\Billingo\Models\Source|null $spending_type (optional)
-     * @param  \Omisai\Billingo\Models\Category|null $categories (optional)
-     * @param  \Omisai\Billingo\Models\Currency|null $currencies (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_methods (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
+     * @param  string|null  $q  (optional, default to '')
+     * @param  int|null  $page  (optional, default to 1)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  DateType|null  $spending_date  (optional)
+     * @param  string|null  $start_date  (optional)
+     * @param  string|null  $end_date  (optional)
+     * @param  PaymentStatusSpending|null  $payment_status  (optional)
+     * @param  Source|null  $spending_type  (optional)
+     * @param  Category|null  $categories  (optional)
+     * @param  Currency|null  $currencies  (optional)
+     * @param  PaymentMethod|null  $payment_methods  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\SpendingList|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingListWithHttpInfo($q = '', $page = 1, $per_page = 25, $spending_date = null, $start_date = null, $end_date = null, $payment_status = null, $spending_type = null, $categories = null, $currencies = null, $payment_methods = null, string $contentType = self::contentTypes['spendingList'][0])
     {
@@ -492,7 +498,6 @@ class SpendingApi
             }
 
             $statusCode = $response->getStatusCode();
-
 
             switch ($statusCode) {
                 case 200:
@@ -538,8 +543,6 @@ class SpendingApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -619,7 +622,6 @@ class SpendingApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -629,21 +631,21 @@ class SpendingApi
      *
      * Lists all spending
      *
-     * @param  string|null $q (optional, default to '')
-     * @param  int|null $page (optional, default to 1)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  \Omisai\Billingo\Models\DateType|null $spending_date (optional)
-     * @param  string|null $start_date (optional)
-     * @param  string|null $end_date (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatusSpending|null $payment_status (optional)
-     * @param  \Omisai\Billingo\Models\Source|null $spending_type (optional)
-     * @param  \Omisai\Billingo\Models\Category|null $categories (optional)
-     * @param  \Omisai\Billingo\Models\Currency|null $currencies (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_methods (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
+     * @param  string|null  $q  (optional, default to '')
+     * @param  int|null  $page  (optional, default to 1)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  DateType|null  $spending_date  (optional)
+     * @param  string|null  $start_date  (optional)
+     * @param  string|null  $end_date  (optional)
+     * @param  PaymentStatusSpending|null  $payment_status  (optional)
+     * @param  Source|null  $spending_type  (optional)
+     * @param  Category|null  $categories  (optional)
+     * @param  Currency|null  $currencies  (optional)
+     * @param  PaymentMethod|null  $payment_methods  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingListAsync($q = '', $page = 1, $per_page = 25, $spending_date = null, $start_date = null, $end_date = null, $payment_status = null, $spending_type = null, $categories = null, $currencies = null, $payment_methods = null, string $contentType = self::contentTypes['spendingList'][0])
     {
@@ -660,21 +662,21 @@ class SpendingApi
      *
      * Lists all spending
      *
-     * @param  string|null $q (optional, default to '')
-     * @param  int|null $page (optional, default to 1)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  \Omisai\Billingo\Models\DateType|null $spending_date (optional)
-     * @param  string|null $start_date (optional)
-     * @param  string|null $end_date (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatusSpending|null $payment_status (optional)
-     * @param  \Omisai\Billingo\Models\Source|null $spending_type (optional)
-     * @param  \Omisai\Billingo\Models\Category|null $categories (optional)
-     * @param  \Omisai\Billingo\Models\Currency|null $currencies (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_methods (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
+     * @param  string|null  $q  (optional, default to '')
+     * @param  int|null  $page  (optional, default to 1)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  DateType|null  $spending_date  (optional)
+     * @param  string|null  $start_date  (optional)
+     * @param  string|null  $end_date  (optional)
+     * @param  PaymentStatusSpending|null  $payment_status  (optional)
+     * @param  Source|null  $spending_type  (optional)
+     * @param  Category|null  $categories  (optional)
+     * @param  Currency|null  $currencies  (optional)
+     * @param  PaymentMethod|null  $payment_methods  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingListAsyncWithHttpInfo($q = '', $page = 1, $per_page = 25, $spending_date = null, $start_date = null, $end_date = null, $payment_status = null, $spending_type = null, $categories = null, $currencies = null, $payment_methods = null, string $contentType = self::contentTypes['spendingList'][0])
     {
@@ -686,7 +688,7 @@ class SpendingApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -697,7 +699,7 @@ class SpendingApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -720,26 +722,24 @@ class SpendingApi
     /**
      * Create request for operation 'spendingList'
      *
-     * @param  string|null $q (optional, default to '')
-     * @param  int|null $page (optional, default to 1)
-     * @param  int|null $per_page (optional, default to 25)
-     * @param  \Omisai\Billingo\Models\DateType|null $spending_date (optional)
-     * @param  string|null $start_date (optional)
-     * @param  string|null $end_date (optional)
-     * @param  \Omisai\Billingo\Models\PaymentStatusSpending|null $payment_status (optional)
-     * @param  \Omisai\Billingo\Models\Source|null $spending_type (optional)
-     * @param  \Omisai\Billingo\Models\Category|null $categories (optional)
-     * @param  \Omisai\Billingo\Models\Currency|null $currencies (optional)
-     * @param  \Omisai\Billingo\Models\PaymentMethod|null $payment_methods (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
+     * @param  string|null  $q  (optional, default to '')
+     * @param  int|null  $page  (optional, default to 1)
+     * @param  int|null  $per_page  (optional, default to 25)
+     * @param  DateType|null  $spending_date  (optional)
+     * @param  string|null  $start_date  (optional)
+     * @param  string|null  $end_date  (optional)
+     * @param  PaymentStatusSpending|null  $payment_status  (optional)
+     * @param  Source|null  $spending_type  (optional)
+     * @param  Category|null  $categories  (optional)
+     * @param  Currency|null  $currencies  (optional)
+     * @param  PaymentMethod|null  $payment_methods  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingList'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function spendingListRequest($q = '', $page = 1, $per_page = 25, $spending_date = null, $start_date = null, $end_date = null, $payment_status = null, $spending_type = null, $categories = null, $currencies = null, $payment_methods = null, string $contentType = self::contentTypes['spendingList'][0])
     {
-
-
 
         if ($per_page !== null && $per_page > 100) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling SpendingApi.spendingList, must be smaller than or equal to 100.');
@@ -747,15 +747,6 @@ class SpendingApi
         if ($per_page !== null && $per_page < 1) {
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling SpendingApi.spendingList, must be bigger than or equal to 1.');
         }
-
-
-
-
-
-
-
-
-
 
         $resourcePath = '/spendings';
         $formParams = [];
@@ -864,11 +855,8 @@ class SpendingApi
             false // required
         ) ?? []);
 
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -882,15 +870,15 @@ class SpendingApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -916,9 +904,10 @@ class SpendingApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -929,16 +918,17 @@ class SpendingApi
      *
      * Creates a new spending.
      *
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
+     * @param  SpendingSave|null  $spending_save  spending_save (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Spending|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse
      */
     public function spendingSave($spending_save = null, string $contentType = self::contentTypes['spendingSave'][0])
     {
-        list($response) = $this->spendingSaveWithHttpInfo($spending_save, $contentType);
+        [$response] = $this->spendingSaveWithHttpInfo($spending_save, $contentType);
+
         return $response;
     }
 
@@ -947,12 +937,12 @@ class SpendingApi
      *
      * Creates a new spending.
      *
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingSaveWithHttpInfo($spending_save = null, string $contentType = self::contentTypes['spendingSave'][0])
     {
@@ -980,7 +970,6 @@ class SpendingApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
@@ -1031,8 +1020,6 @@ class SpendingApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1120,7 +1107,6 @@ class SpendingApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1130,11 +1116,11 @@ class SpendingApi
      *
      * Creates a new spending.
      *
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingSaveAsync($spending_save = null, string $contentType = self::contentTypes['spendingSave'][0])
     {
@@ -1151,11 +1137,11 @@ class SpendingApi
      *
      * Creates a new spending.
      *
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingSaveAsyncWithHttpInfo($spending_save = null, string $contentType = self::contentTypes['spendingSave'][0])
     {
@@ -1167,7 +1153,7 @@ class SpendingApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1178,7 +1164,7 @@ class SpendingApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1201,16 +1187,14 @@ class SpendingApi
     /**
      * Create request for operation 'spendingSave'
      *
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingSave'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function spendingSaveRequest($spending_save = null, string $contentType = self::contentTypes['spendingSave'][0])
     {
-
-
 
         $resourcePath = '/spendings';
         $formParams = [];
@@ -1219,12 +1203,8 @@ class SpendingApi
         $httpBody = '';
         $multipart = false;
 
-
-
-
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1232,8 +1212,8 @@ class SpendingApi
         // for model (json/xml)
         if (isset($spending_save)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($spending_save));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($spending_save));
             } else {
                 $httpBody = $spending_save;
             }
@@ -1245,15 +1225,15 @@ class SpendingApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1279,9 +1259,10 @@ class SpendingApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1292,16 +1273,17 @@ class SpendingApi
      *
      * Retrieves one specific spending.
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Spending|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function spendingShow($id, string $contentType = self::contentTypes['spendingShow'][0])
     {
-        list($response) = $this->spendingShowWithHttpInfo($id, $contentType);
+        [$response] = $this->spendingShowWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -1310,12 +1292,12 @@ class SpendingApi
      *
      * Retrieves one specific spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingShowWithHttpInfo($id, string $contentType = self::contentTypes['spendingShow'][0])
     {
@@ -1343,7 +1325,6 @@ class SpendingApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -1394,8 +1375,6 @@ class SpendingApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1483,7 +1462,6 @@ class SpendingApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1493,11 +1471,11 @@ class SpendingApi
      *
      * Retrieves one specific spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingShowAsync($id, string $contentType = self::contentTypes['spendingShow'][0])
     {
@@ -1514,11 +1492,11 @@ class SpendingApi
      *
      * Retrieves one specific spending.
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingShowAsyncWithHttpInfo($id, string $contentType = self::contentTypes['spendingShow'][0])
     {
@@ -1530,7 +1508,7 @@ class SpendingApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1541,7 +1519,7 @@ class SpendingApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1564,11 +1542,11 @@ class SpendingApi
     /**
      * Create request for operation 'spendingShow'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingShow'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function spendingShowRequest($id, string $contentType = self::contentTypes['spendingShow'][0])
     {
@@ -1580,7 +1558,6 @@ class SpendingApi
             );
         }
 
-
         $resourcePath = '/spendings/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1588,20 +1565,17 @@ class SpendingApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1615,15 +1589,15 @@ class SpendingApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1649,9 +1623,10 @@ class SpendingApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1662,17 +1637,18 @@ class SpendingApi
      *
      * Updates a spending item.
      *
-     * @param  int $id id (required)
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
+     * @param  int  $id  id (required)
+     * @param  SpendingSave|null  $spending_save  spending_save (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Spending|ClientErrorResponse|ClientErrorResponse|SubscriptionErrorResponse|ClientErrorResponse|ValidationErrorResponse|TooManyRequestsResponse|ServerErrorResponse|ClientErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse
      */
     public function spendingUpdate($id, $spending_save = null, string $contentType = self::contentTypes['spendingUpdate'][0])
     {
-        list($response) = $this->spendingUpdateWithHttpInfo($id, $spending_save, $contentType);
+        [$response] = $this->spendingUpdateWithHttpInfo($id, $spending_save, $contentType);
+
         return $response;
     }
 
@@ -1681,13 +1657,13 @@ class SpendingApi
      *
      * Updates a spending item.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
      *
-     * @throws \Omisai\Billingo\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \Omisai\Billingo\Models\Spending|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\SubscriptionErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse|\Omisai\Billingo\Models\ValidationErrorResponse|\Omisai\Billingo\Models\TooManyRequestsResponse|\Omisai\Billingo\Models\ServerErrorResponse|\Omisai\Billingo\Models\ClientErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      */
     public function spendingUpdateWithHttpInfo($id, $spending_save = null, string $contentType = self::contentTypes['spendingUpdate'][0])
     {
@@ -1715,7 +1691,6 @@ class SpendingApi
 
             $statusCode = $response->getStatusCode();
 
-
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
@@ -1772,8 +1747,6 @@ class SpendingApi
                         $response,
                     );
             }
-
-
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1869,7 +1842,6 @@ class SpendingApi
                     throw $e;
             }
 
-
             throw $e;
         }
     }
@@ -1879,12 +1851,12 @@ class SpendingApi
      *
      * Updates a spending item.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingUpdateAsync($id, $spending_save = null, string $contentType = self::contentTypes['spendingUpdate'][0])
     {
@@ -1901,12 +1873,12 @@ class SpendingApi
      *
      * Updates a spending item.
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
      *
+     * @return PromiseInterface
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function spendingUpdateAsyncWithHttpInfo($id, $spending_save = null, string $contentType = self::contentTypes['spendingUpdate'][0])
     {
@@ -1918,7 +1890,7 @@ class SpendingApi
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
+                        $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1929,7 +1901,7 @@ class SpendingApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
@@ -1952,12 +1924,12 @@ class SpendingApi
     /**
      * Create request for operation 'spendingUpdate'
      *
-     * @param  int $id (required)
-     * @param  \Omisai\Billingo\Models\SpendingSave|null $spending_save (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
+     * @param  int  $id  (required)
+     * @param  SpendingSave|null  $spending_save  (optional)
+     * @param  string  $contentType  The value for the Content-Type header. Check self::contentTypes['spendingUpdate'] to see the possible values for this operation
      *
+     * @return Request
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
      */
     public function spendingUpdateRequest($id, $spending_save = null, string $contentType = self::contentTypes['spendingUpdate'][0])
     {
@@ -1969,8 +1941,6 @@ class SpendingApi
             );
         }
 
-
-
         $resourcePath = '/spendings/{id}';
         $formParams = [];
         $queryParams = [];
@@ -1978,20 +1948,17 @@ class SpendingApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{'.'id'.'}',
                 ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json',],
+            ['application/json'],
             $contentType,
             $multipart
         );
@@ -1999,8 +1966,8 @@ class SpendingApi
         // for model (json/xml)
         if (isset($spending_save)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($spending_save));
+                // if Content-Type contains "application/json", json_encode the body
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($spending_save));
             } else {
                 $httpBody = $spending_save;
             }
@@ -2012,15 +1979,15 @@ class SpendingApi
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
                             'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                // if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2046,9 +2013,10 @@ class SpendingApi
 
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost.$resourcePath.($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2057,8 +2025,8 @@ class SpendingApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
      * @return array of http client options
+     * @throws \RuntimeException on file opening failure
      */
     protected function createHttpClientOption()
     {
@@ -2066,7 +2034,7 @@ class SpendingApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: '.$this->config->getDebugFile());
             }
         }
 
@@ -2087,7 +2055,7 @@ class SpendingApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+            $content = $response->getBody(); // stream goes to serializer
         } else {
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
@@ -2110,7 +2078,7 @@ class SpendingApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
@@ -2118,8 +2086,8 @@ class SpendingApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
+        $left = (int) ($rangeCode[0].'00');
+        $right = (int) ($rangeCode[0].'99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

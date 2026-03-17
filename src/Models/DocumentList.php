@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,20 +29,19 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentList Class Doc Comment
  *
  * @category Class
  * @description A object with a data property that contains an array of up to limit documents. Each entry in the array is a separate document object. If no more documents are available, the resulting array will be empty.
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentList implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -66,7 +64,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => 'int',
         'last_page' => 'int',
         'prev_page_url' => 'string',
-        'next_page_url' => 'string'
+        'next_page_url' => 'string',
     ];
 
     /**
@@ -83,13 +81,13 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => null,
         'last_page' => null,
         'prev_page_url' => null,
-        'next_page_url' => null
+        'next_page_url' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'data' => false,
@@ -98,13 +96,13 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => false,
         'last_page' => false,
         'prev_page_url' => false,
-        'next_page_url' => false
+        'next_page_url' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -130,8 +128,6 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -141,7 +137,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -151,7 +147,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -160,9 +156,6 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -171,9 +164,6 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -193,7 +183,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => 'current_page',
         'last_page' => 'last_page',
         'prev_page_url' => 'prev_page_url',
-        'next_page_url' => 'next_page_url'
+        'next_page_url' => 'next_page_url',
     ];
 
     /**
@@ -208,7 +198,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => 'setCurrentPage',
         'last_page' => 'setLastPage',
         'prev_page_url' => 'setPrevPageUrl',
-        'next_page_url' => 'setNextPageUrl'
+        'next_page_url' => 'setNextPageUrl',
     ];
 
     /**
@@ -223,7 +213,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         'current_page' => 'getCurrentPage',
         'last_page' => 'getLastPage',
         'prev_page_url' => 'getPrevPageUrl',
-        'next_page_url' => 'getNextPageUrl'
+        'next_page_url' => 'getNextPageUrl',
     ];
 
     /**
@@ -267,7 +257,6 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -278,8 +267,8 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -297,9 +286,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -333,11 +320,10 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets data
      *
-     * @return \Omisai\Billingo\Models\Document[]|null
+     * @return Document[]|null
      */
     public function getData()
     {
@@ -347,7 +333,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Omisai\Billingo\Models\Document[]|null $data data
+     * @param  Document[]|null  $data  data
      *
      * @return self
      */
@@ -374,7 +360,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      *
-     * @param int|null $total total
+     * @param  int|null  $total  total
      *
      * @return self
      */
@@ -401,7 +387,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets per_page
      *
-     * @param int|null $per_page per_page
+     * @param  int|null  $per_page  per_page
      *
      * @return self
      */
@@ -428,7 +414,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets current_page
      *
-     * @param int|null $current_page current_page
+     * @param  int|null  $current_page  current_page
      *
      * @return self
      */
@@ -455,7 +441,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_page
      *
-     * @param int|null $last_page last_page
+     * @param  int|null  $last_page  last_page
      *
      * @return self
      */
@@ -482,7 +468,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets prev_page_url
      *
-     * @param string|null $prev_page_url prev_page_url
+     * @param  string|null  $prev_page_url  prev_page_url
      *
      * @return self
      */
@@ -509,7 +495,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets next_page_url
      *
-     * @param string|null $next_page_url next_page_url
+     * @param  string|null  $next_page_url  next_page_url
      *
      * @return self
      */
@@ -522,12 +508,11 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -537,7 +522,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -550,10 +535,8 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -567,9 +550,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -581,7 +562,7 @@ class DocumentList implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentExportStatus Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentExportStatus implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -61,7 +59,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPITypes = [
         'id' => 'string',
         'state' => '\Omisai\Billingo\Models\DocumentExportStatusState',
-        'message' => 'string'
+        'message' => 'string',
     ];
 
     /**
@@ -74,24 +72,24 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPIFormats = [
         'id' => null,
         'state' => null,
-        'message' => null
+        'message' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'id' => false,
         'state' => false,
-        'message' => false
+        'message' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -117,8 +115,6 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -128,7 +124,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -138,7 +134,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -147,9 +143,6 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -158,9 +151,6 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -176,7 +166,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $attributeMap = [
         'id' => 'id',
         'state' => 'state',
-        'message' => 'message'
+        'message' => 'message',
     ];
 
     /**
@@ -187,7 +177,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $setters = [
         'id' => 'setId',
         'state' => 'setState',
-        'message' => 'setMessage'
+        'message' => 'setMessage',
     ];
 
     /**
@@ -198,7 +188,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $getters = [
         'id' => 'getId',
         'state' => 'getState',
-        'message' => 'getMessage'
+        'message' => 'getMessage',
     ];
 
     /**
@@ -242,7 +232,6 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -253,8 +242,8 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -268,9 +257,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -304,7 +291,6 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets id
      *
@@ -318,7 +304,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param  string|null  $id  id
      *
      * @return self
      */
@@ -335,7 +321,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets state
      *
-     * @return \Omisai\Billingo\Models\DocumentExportStatusState|null
+     * @return DocumentExportStatusState|null
      */
     public function getState()
     {
@@ -345,7 +331,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets state
      *
-     * @param \Omisai\Billingo\Models\DocumentExportStatusState|null $state state
+     * @param  DocumentExportStatusState|null  $state  state
      *
      * @return self
      */
@@ -372,7 +358,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets message
      *
-     * @param string|null $message message
+     * @param  string|null  $message  message
      *
      * @return self
      */
@@ -385,12 +371,11 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -400,7 +385,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -413,10 +398,8 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -430,9 +413,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -444,7 +425,7 @@ class DocumentExportStatus implements ModelInterface, ArrayAccess, \JsonSerializ
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

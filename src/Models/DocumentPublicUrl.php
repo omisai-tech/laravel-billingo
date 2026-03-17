@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentPublicUrl Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentPublicUrl implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -59,7 +57,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $openAPITypes = [
-        'public_url' => 'string'
+        'public_url' => 'string',
     ];
 
     /**
@@ -70,22 +68,22 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'public_url' => null
+        'public_url' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
-        'public_url' => false
+        'public_url' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -111,8 +109,6 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -122,7 +118,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -132,7 +128,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -141,9 +137,6 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -152,9 +145,6 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -168,7 +158,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'public_url' => 'public_url'
+        'public_url' => 'public_url',
     ];
 
     /**
@@ -177,7 +167,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'public_url' => 'setPublicUrl'
+        'public_url' => 'setPublicUrl',
     ];
 
     /**
@@ -186,7 +176,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'public_url' => 'getPublicUrl'
+        'public_url' => 'getPublicUrl',
     ];
 
     /**
@@ -230,7 +220,6 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -241,8 +230,8 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -254,9 +243,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -290,7 +277,6 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets public_url
      *
@@ -304,7 +290,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets public_url
      *
-     * @param string|null $public_url public_url
+     * @param  string|null  $public_url  public_url
      *
      * @return self
      */
@@ -317,12 +303,11 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -332,7 +317,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -345,10 +330,8 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -362,9 +345,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -376,7 +357,7 @@ class DocumentPublicUrl implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

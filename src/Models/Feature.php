@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * Feature Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -117,7 +113,7 @@ class Feature
             self::SUBSCRIPTION_STANDARD,
             self::TENDERMONITOR_STANDARD,
             self::TENDERMONITOR_VIP,
-            self::WHITELABEL
+            self::WHITELABEL,
         ];
     }
 }

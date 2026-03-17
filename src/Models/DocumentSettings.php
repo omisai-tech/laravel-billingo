@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentSettings Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentSettings implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -67,7 +65,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => 'string',
         'place_id' => 'int',
         'instant_payment' => 'bool',
-        'selected_type' => '\Omisai\Billingo\Models\DocumentType'
+        'selected_type' => '\Omisai\Billingo\Models\DocumentType',
     ];
 
     /**
@@ -86,13 +84,13 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => null,
         'place_id' => null,
         'instant_payment' => null,
-        'selected_type' => null
+        'selected_type' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'mediated_service' => false,
@@ -103,13 +101,13 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => false,
         'place_id' => true,
         'instant_payment' => false,
-        'selected_type' => false
+        'selected_type' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -135,8 +133,6 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -146,7 +142,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -156,7 +152,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -165,9 +161,6 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -176,9 +169,6 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -200,7 +190,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => 'order_number',
         'place_id' => 'place_id',
         'instant_payment' => 'instant_payment',
-        'selected_type' => 'selected_type'
+        'selected_type' => 'selected_type',
     ];
 
     /**
@@ -217,7 +207,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => 'setOrderNumber',
         'place_id' => 'setPlaceId',
         'instant_payment' => 'setInstantPayment',
-        'selected_type' => 'setSelectedType'
+        'selected_type' => 'setSelectedType',
     ];
 
     /**
@@ -234,7 +224,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_number' => 'getOrderNumber',
         'place_id' => 'getPlaceId',
         'instant_payment' => 'getInstantPayment',
-        'selected_type' => 'getSelectedType'
+        'selected_type' => 'getSelectedType',
     ];
 
     /**
@@ -278,7 +268,6 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -289,8 +278,8 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -310,9 +299,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -346,7 +333,6 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets mediated_service
      *
@@ -360,7 +346,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mediated_service
      *
-     * @param bool|null $mediated_service mediated_service
+     * @param  bool|null  $mediated_service  mediated_service
      *
      * @return self
      */
@@ -387,7 +373,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets without_financial_fulfillment
      *
-     * @param bool|null $without_financial_fulfillment without_financial_fulfillment
+     * @param  bool|null  $without_financial_fulfillment  without_financial_fulfillment
      *
      * @return self
      */
@@ -404,7 +390,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets online_payment
      *
-     * @return \Omisai\Billingo\Models\OnlinePayment|null
+     * @return OnlinePayment|null
      */
     public function getOnlinePayment()
     {
@@ -414,7 +400,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets online_payment
      *
-     * @param \Omisai\Billingo\Models\OnlinePayment|null $online_payment online_payment
+     * @param  OnlinePayment|null  $online_payment  online_payment
      *
      * @return self
      */
@@ -431,7 +417,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets round
      *
-     * @return \Omisai\Billingo\Models\Round|null
+     * @return Round|null
      */
     public function getRound()
     {
@@ -441,7 +427,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets round
      *
-     * @param \Omisai\Billingo\Models\Round|null $round round
+     * @param  Round|null  $round  round
      *
      * @return self
      */
@@ -468,7 +454,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets no_send_onlineszamla_by_user
      *
-     * @param bool|null $no_send_onlineszamla_by_user no_send_onlineszamla_by_user
+     * @param  bool|null  $no_send_onlineszamla_by_user  no_send_onlineszamla_by_user
      *
      * @return self
      */
@@ -495,7 +481,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_number
      *
-     * @param string|null $order_number order_number
+     * @param  string|null  $order_number  order_number
      *
      * @return self
      */
@@ -522,7 +508,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets place_id
      *
-     * @param int|null $place_id place_id
+     * @param  int|null  $place_id  place_id
      *
      * @return self
      */
@@ -533,7 +519,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('place_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -556,7 +542,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets instant_payment
      *
-     * @param bool|null $instant_payment instant_payment
+     * @param  bool|null  $instant_payment  instant_payment
      *
      * @return self
      */
@@ -573,7 +559,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets selected_type
      *
-     * @return \Omisai\Billingo\Models\DocumentType|null
+     * @return DocumentType|null
      */
     public function getSelectedType()
     {
@@ -583,7 +569,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets selected_type
      *
-     * @param \Omisai\Billingo\Models\DocumentType|null $selected_type selected_type
+     * @param  DocumentType|null  $selected_type  selected_type
      *
      * @return self
      */
@@ -596,12 +582,11 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -611,7 +596,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -624,10 +609,8 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -641,9 +624,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -655,7 +636,7 @@ class DocumentSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

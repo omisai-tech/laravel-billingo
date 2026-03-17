@@ -42,7 +42,7 @@ class Billingo
      */
     public function __construct(array $config = [])
     {
-        $this->configuration = new Configuration();
+        $this->configuration = new Configuration;
 
         // Set the API key from config
         if (!empty($config['api_key'])) {
@@ -67,7 +67,7 @@ class Billingo
             'connect_timeout' => $config['connect_timeout'] ?? 10,
         ]);
 
-        $this->headerSelector = new HeaderSelector();
+        $this->headerSelector = new HeaderSelector;
     }
 
     /**

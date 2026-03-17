@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,19 +29,18 @@
 
 namespace Omisai\Billingo\Models;
 
-use \ArrayAccess;
-use \Omisai\Billingo\ObjectSerializer;
+use ArrayAccess;
+use Omisai\Billingo\ObjectSerializer;
 
 /**
  * DocumentOrganization Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentOrganization implements \JsonSerializable, ArrayAccess, ModelInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -66,7 +64,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => 'bool',
         'ev_number' => 'string',
         'eu_tax_number' => 'string',
-        'cash_settled' => 'bool'
+        'cash_settled' => 'bool',
     ];
 
     /**
@@ -84,13 +82,13 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => null,
         'ev_number' => null,
         'eu_tax_number' => null,
-        'cash_settled' => null
+        'cash_settled' => null,
     ];
 
     /**
      * Array of nullable properties. Used for (de)serialization
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected static array $openAPINullables = [
         'name' => false,
@@ -100,13 +98,13 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => false,
         'ev_number' => false,
         'eu_tax_number' => false,
-        'cash_settled' => false
+        'cash_settled' => false,
     ];
 
     /**
      * If a nullable field gets set to null, insert it here
      *
-     * @var boolean[]
+     * @var bool[]
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -132,8 +130,6 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -143,7 +139,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -153,7 +149,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param  bool[]  $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -162,9 +158,6 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -173,9 +166,6 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -196,7 +186,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => 'small_taxpayer',
         'ev_number' => 'ev_number',
         'eu_tax_number' => 'eu_tax_number',
-        'cash_settled' => 'cash_settled'
+        'cash_settled' => 'cash_settled',
     ];
 
     /**
@@ -212,7 +202,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => 'setSmallTaxpayer',
         'ev_number' => 'setEvNumber',
         'eu_tax_number' => 'setEuTaxNumber',
-        'cash_settled' => 'setCashSettled'
+        'cash_settled' => 'setCashSettled',
     ];
 
     /**
@@ -228,7 +218,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         'small_taxpayer' => 'getSmallTaxpayer',
         'ev_number' => 'getEvNumber',
         'eu_tax_number' => 'getEuTaxNumber',
-        'cash_settled' => 'getCashSettled'
+        'cash_settled' => 'getCashSettled',
     ];
 
     /**
@@ -272,7 +262,6 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -283,8 +272,8 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Constructor
      *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
+     * @param  mixed[]|null  $data  Associated array of property values
+     *                              initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -303,9 +292,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
      * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
      * $this->openAPINullablesSetToNull array
      *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
+     * @param  mixed  $defaultValue
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
@@ -339,7 +326,6 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets name
      *
@@ -353,7 +339,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param  string|null  $name  name
      *
      * @return self
      */
@@ -380,7 +366,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets tax_number
      *
-     * @param string|null $tax_number tax_number
+     * @param  string|null  $tax_number  tax_number
      *
      * @return self
      */
@@ -397,7 +383,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets bank_account
      *
-     * @return \Omisai\Billingo\Models\DocumentBankAccount|null
+     * @return DocumentBankAccount|null
      */
     public function getBankAccount()
     {
@@ -407,7 +393,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets bank_account
      *
-     * @param \Omisai\Billingo\Models\DocumentBankAccount|null $bank_account bank_account
+     * @param  DocumentBankAccount|null  $bank_account  bank_account
      *
      * @return self
      */
@@ -424,7 +410,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets address
      *
-     * @return \Omisai\Billingo\Models\Address|null
+     * @return Address|null
      */
     public function getAddress()
     {
@@ -434,7 +420,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets address
      *
-     * @param \Omisai\Billingo\Models\Address|null $address address
+     * @param  Address|null  $address  address
      *
      * @return self
      */
@@ -461,7 +447,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets small_taxpayer
      *
-     * @param bool|null $small_taxpayer small_taxpayer
+     * @param  bool|null  $small_taxpayer  small_taxpayer
      *
      * @return self
      */
@@ -488,7 +474,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets ev_number
      *
-     * @param string|null $ev_number ev_number
+     * @param  string|null  $ev_number  ev_number
      *
      * @return self
      */
@@ -515,7 +501,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets eu_tax_number
      *
-     * @param string|null $eu_tax_number eu_tax_number
+     * @param  string|null  $eu_tax_number  eu_tax_number
      *
      * @return self
      */
@@ -542,7 +528,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets cash_settled
      *
-     * @param bool|null $cash_settled cash_settled
+     * @param  bool|null  $cash_settled  cash_settled
      *
      * @return self
      */
@@ -555,12 +541,11 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return boolean
+     * @param  int|string  $offset  Offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -570,7 +555,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param  int|string  $offset  Offset
      *
      * @return mixed|null
      */
@@ -583,10 +568,8 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets value based on offset.
      *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
+     * @param  int|null  $offset  Offset
+     * @param  mixed  $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -600,9 +583,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
-     *
-     * @return void
+     * @param  int|string  $offset  Offset
      */
     public function offsetUnset(mixed $offset): void
     {
@@ -614,7 +595,7 @@ class DocumentOrganization implements ModelInterface, ArrayAccess, \JsonSerializ
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     *               of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

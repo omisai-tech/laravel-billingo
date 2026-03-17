@@ -6,7 +6,6 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -30,13 +29,10 @@
 
 namespace Omisai\Billingo\Models;
 
-use \Omisai\Billingo\ObjectSerializer;
-
 /**
  * DocumentExportType Class Doc Comment
  *
  * @category Class
- * @package  Omisai\Billingo
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -126,7 +122,7 @@ class DocumentExportType
             self::SIMPLE_EXCEL,
             self::SIMPLE_EXCEL_ITEMS,
             self::TENSOFT,
-            self::TENSOFT_29_DOT_65
+            self::TENSOFT_29_DOT_65,
         ];
     }
 }

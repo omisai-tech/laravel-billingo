@@ -11,23 +11,33 @@
  * BILLINGO_API_KEY=your-api-key
  */
 
+use Omisai\Billingo\ApiException;
 use Omisai\Billingo\Facades\Billingo;
-use Omisai\Billingo\Models\Partner;
 use Omisai\Billingo\Models\Address;
+use Omisai\Billingo\Models\BankAccount;
+use Omisai\Billingo\Models\BankAccountList;
+use Omisai\Billingo\Models\ConversationRate;
 use Omisai\Billingo\Models\Country;
-use Omisai\Billingo\Models\PartnerTaxType;
-use Omisai\Billingo\Models\Product;
 use Omisai\Billingo\Models\Currency;
-use Omisai\Billingo\Models\Vat;
+use Omisai\Billingo\Models\Document;
+use Omisai\Billingo\Models\DocumentBlock;
+use Omisai\Billingo\Models\DocumentBlockList;
 use Omisai\Billingo\Models\DocumentInsert;
 use Omisai\Billingo\Models\DocumentInsertItemsInner;
 use Omisai\Billingo\Models\DocumentInsertType;
-use Omisai\Billingo\Models\PaymentMethod;
 use Omisai\Billingo\Models\DocumentLanguage;
+use Omisai\Billingo\Models\DocumentList;
+use Omisai\Billingo\Models\OrganizationData;
+use Omisai\Billingo\Models\Partner;
+use Omisai\Billingo\Models\PartnerList;
+use Omisai\Billingo\Models\PartnerTaxType;
+use Omisai\Billingo\Models\PaymentMethod;
+use Omisai\Billingo\Models\Product;
+use Omisai\Billingo\Models\ProductList;
+use Omisai\Billingo\Models\SpendingList;
+use Omisai\Billingo\Models\TaxNumber;
 use Omisai\Billingo\Models\UnitPriceType;
-use Omisai\Billingo\Models\SendDocument;
-use Omisai\Billingo\Models\PaymentHistory;
-use Omisai\Billingo\ApiException;
+use Omisai\Billingo\Models\Vat;
 
 beforeEach(function () {
     // Skip if no API key is configured
@@ -40,7 +50,7 @@ describe('Partner API Integration', function () {
     it('can list partners', function () {
         $response = Billingo::partner()->listPartner();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\PartnerList::class);
+        expect($response)->toBeInstanceOf(PartnerList::class);
         expect($response->getData())->toBeArray();
     });
 
@@ -49,20 +59,20 @@ describe('Partner API Integration', function () {
             'country_code' => Country::HU,
             'post_code' => '1234',
             'city' => 'Budapest',
-            'address' => 'Test Street ' . uniqid(),
+            'address' => 'Test Street '.uniqid(),
         ]);
 
         $partner = new Partner([
-            'name' => 'Test Partner ' . uniqid(),
+            'name' => 'Test Partner '.uniqid(),
             'address' => $address,
-            'emails' => ['test-' . uniqid() . '@example.com'],
+            'emails' => ['test-'.uniqid().'@example.com'],
             'taxcode' => '',
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
 
         $response = Billingo::partner()->createPartner($partner);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Partner::class);
+        expect($response)->toBeInstanceOf(Partner::class);
         expect($response->getId())->toBeInt();
         expect($response->getId())->toBeGreaterThan(0);
         expect($response->getName())->toBe($partner->getName());
@@ -71,14 +81,14 @@ describe('Partner API Integration', function () {
     it('can get a partner by id', function () {
         // First create a partner
         $partner = new Partner([
-            'name' => 'Get Test Partner ' . uniqid(),
+            'name' => 'Get Test Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Test Address 1',
             ]),
-            'emails' => ['gettest-' . uniqid() . '@example.com'],
+            'emails' => ['gettest-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
 
@@ -88,7 +98,7 @@ describe('Partner API Integration', function () {
         // Now get the partner
         $response = Billingo::partner()->getPartner($partnerId);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Partner::class);
+        expect($response)->toBeInstanceOf(Partner::class);
         expect($response->getId())->toBe($partnerId);
         expect($response->getName())->toBe($partner->getName());
     });
@@ -96,14 +106,14 @@ describe('Partner API Integration', function () {
     it('can update a partner', function () {
         // First create a partner
         $partner = new Partner([
-            'name' => 'Update Test Partner ' . uniqid(),
+            'name' => 'Update Test Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Original Address',
             ]),
-            'emails' => ['update-' . uniqid() . '@example.com'],
+            'emails' => ['update-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
 
@@ -112,7 +122,7 @@ describe('Partner API Integration', function () {
 
         // Update the partner
         $updatedPartner = new Partner([
-            'name' => 'Updated Partner Name ' . uniqid(),
+            'name' => 'Updated Partner Name '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
@@ -125,21 +135,21 @@ describe('Partner API Integration', function () {
 
         $response = Billingo::partner()->updatePartner($partnerId, $updatedPartner);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Partner::class);
+        expect($response)->toBeInstanceOf(Partner::class);
         expect($response->getName())->toBe($updatedPartner->getName());
     });
 
     it('can delete a partner', function () {
         // First create a partner to delete
         $partner = new Partner([
-            'name' => 'Delete Test Partner ' . uniqid(),
+            'name' => 'Delete Test Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Delete Test Address',
             ]),
-            'emails' => ['delete-' . uniqid() . '@example.com'],
+            'emails' => ['delete-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
 
@@ -163,13 +173,13 @@ describe('Product API Integration', function () {
     it('can list products', function () {
         $response = Billingo::product()->listProduct();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\ProductList::class);
+        expect($response)->toBeInstanceOf(ProductList::class);
         expect($response->getData())->toBeArray();
     });
 
     it('can create a product', function () {
         $product = new Product([
-            'name' => 'Test Product ' . uniqid(),
+            'name' => 'Test Product '.uniqid(),
             'comment' => 'Created by integration test',
             'currency' => Currency::HUF,
             'vat' => Vat::_27,
@@ -179,7 +189,7 @@ describe('Product API Integration', function () {
 
         $response = Billingo::product()->createProduct($product);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Product::class);
+        expect($response)->toBeInstanceOf(Product::class);
         expect($response->getId())->toBeInt();
         expect($response->getId())->toBeGreaterThan(0);
         expect($response->getName())->toBe($product->getName());
@@ -190,7 +200,7 @@ describe('Product API Integration', function () {
     it('can get a product by id', function () {
         // First create a product
         $product = new Product([
-            'name' => 'Get Test Product ' . uniqid(),
+            'name' => 'Get Test Product '.uniqid(),
             'currency' => Currency::HUF,
             'vat' => Vat::_27,
             'net_unit_price' => 5000,
@@ -203,7 +213,7 @@ describe('Product API Integration', function () {
         // Now get the product
         $response = Billingo::product()->getProduct($productId);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Product::class);
+        expect($response)->toBeInstanceOf(Product::class);
         expect($response->getId())->toBe($productId);
         expect($response->getName())->toBe($product->getName());
     });
@@ -211,7 +221,7 @@ describe('Product API Integration', function () {
     it('can update a product', function () {
         // First create a product
         $product = new Product([
-            'name' => 'Update Test Product ' . uniqid(),
+            'name' => 'Update Test Product '.uniqid(),
             'currency' => Currency::HUF,
             'vat' => Vat::_27,
             'net_unit_price' => 5000,
@@ -223,7 +233,7 @@ describe('Product API Integration', function () {
 
         // Update the product
         $updatedProduct = new Product([
-            'name' => 'Updated Product Name ' . uniqid(),
+            'name' => 'Updated Product Name '.uniqid(),
             'currency' => Currency::HUF,
             'vat' => Vat::_27,
             'net_unit_price' => 7500,
@@ -232,7 +242,7 @@ describe('Product API Integration', function () {
 
         $response = Billingo::product()->updateProduct($productId, $updatedProduct);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Product::class);
+        expect($response)->toBeInstanceOf(Product::class);
         expect($response->getName())->toBe($updatedProduct->getName());
         expect($response->getNetUnitPrice())->toEqual(7500);
     });
@@ -240,7 +250,7 @@ describe('Product API Integration', function () {
     it('can delete a product', function () {
         // First create a product to delete
         $product = new Product([
-            'name' => 'Delete Test Product ' . uniqid(),
+            'name' => 'Delete Test Product '.uniqid(),
             'currency' => Currency::HUF,
             'vat' => Vat::_27,
             'net_unit_price' => 1000,
@@ -267,7 +277,7 @@ describe('Document Block API Integration', function () {
     it('can list document blocks', function () {
         $response = Billingo::documentBlock()->listDocumentBlock();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\DocumentBlockList::class);
+        expect($response)->toBeInstanceOf(DocumentBlockList::class);
         expect($response->getData())->toBeArray();
         expect($response->getData())->not->toBeEmpty();
     });
@@ -283,7 +293,7 @@ describe('Document Block API Integration', function () {
 
         $block = $blocks[0];
 
-        expect($block)->toBeInstanceOf(\Omisai\Billingo\Models\DocumentBlock::class);
+        expect($block)->toBeInstanceOf(DocumentBlock::class);
         expect($block->getId())->toBeInt();
         expect($block->getId())->toBeGreaterThan(0);
     });
@@ -293,7 +303,7 @@ describe('Bank Account API Integration', function () {
     it('can list bank accounts', function () {
         $response = Billingo::bankAccount()->listBankAccount();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\BankAccountList::class);
+        expect($response)->toBeInstanceOf(BankAccountList::class);
         expect($response->getData())->toBeArray();
     });
 
@@ -310,7 +320,7 @@ describe('Bank Account API Integration', function () {
 
         $response = Billingo::bankAccount()->getBankAccount($accountId);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\BankAccount::class);
+        expect($response)->toBeInstanceOf(BankAccount::class);
         expect($response->getId())->toBe($accountId);
     });
 });
@@ -320,7 +330,7 @@ describe('Currency API Integration', function () {
         // Get EUR to HUF conversion rate (date is optional, omitting it for simplicity)
         $response = Billingo::currency()->getConversionRate(Currency::EUR, Currency::HUF);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\ConversationRate::class);
+        expect($response)->toBeInstanceOf(ConversationRate::class);
         expect($response->getConversationRate())->toBeFloat();
         expect($response->getConversationRate())->toBeGreaterThan(0);
     });
@@ -330,7 +340,7 @@ describe('Organization API Integration', function () {
     it('can get organization data', function () {
         $response = Billingo::organization()->getOrganizationData();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\OrganizationData::class);
+        expect($response)->toBeInstanceOf(OrganizationData::class);
         expect($response->getTaxCode())->toBeString();
     });
 });
@@ -339,21 +349,21 @@ describe('Document API Integration', function () {
     it('can list documents', function () {
         $response = Billingo::document()->listDocument();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\DocumentList::class);
+        expect($response)->toBeInstanceOf(DocumentList::class);
         expect($response->getData())->toBeArray();
     });
 
     it('can create a draft invoice', function () {
         // First, we need a partner and document block
         $partner = new Partner([
-            'name' => 'Invoice Test Partner ' . uniqid(),
+            'name' => 'Invoice Test Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Invoice Test Address',
             ]),
-            'emails' => ['invoice-' . uniqid() . '@example.com'],
+            'emails' => ['invoice-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
         $createdPartner = Billingo::partner()->createPartner($partner);
@@ -390,7 +400,7 @@ describe('Document API Integration', function () {
 
         $response = Billingo::document()->createDocument($documentInsert);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Document::class);
+        expect($response)->toBeInstanceOf(Document::class);
         expect($response->getId())->toBeInt();
         expect($response->getId())->toBeGreaterThan(0);
     });
@@ -398,14 +408,14 @@ describe('Document API Integration', function () {
     it('can get a document by id', function () {
         // First create a draft
         $partner = new Partner([
-            'name' => 'Get Doc Partner ' . uniqid(),
+            'name' => 'Get Doc Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Get Doc Address',
             ]),
-            'emails' => ['getdoc-' . uniqid() . '@example.com'],
+            'emails' => ['getdoc-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
         $createdPartner = Billingo::partner()->createPartner($partner);
@@ -441,21 +451,21 @@ describe('Document API Integration', function () {
         // Get the document
         $response = Billingo::document()->getDocument($documentId);
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\Document::class);
+        expect($response)->toBeInstanceOf(Document::class);
         expect($response->getId())->toBe($documentId);
     });
 
     it('can delete a draft document', function () {
         // Create a draft to delete
         $partner = new Partner([
-            'name' => 'Delete Doc Partner ' . uniqid(),
+            'name' => 'Delete Doc Partner '.uniqid(),
             'address' => new Address([
                 'country_code' => Country::HU,
                 'post_code' => '1000',
                 'city' => 'Budapest',
                 'address' => 'Delete Doc Address',
             ]),
-            'emails' => ['deletedoc-' . uniqid() . '@example.com'],
+            'emails' => ['deletedoc-'.uniqid().'@example.com'],
             'tax_type' => PartnerTaxType::NO_TAX_NUMBER,
         ]);
         $createdPartner = Billingo::partner()->createPartner($partner);
@@ -506,7 +516,7 @@ describe('Util API Integration', function () {
         // Use a known valid Hungarian tax number format
         $response = Billingo::util()->checkTaxNumber('12345678-1-23');
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\TaxNumber::class);
+        expect($response)->toBeInstanceOf(TaxNumber::class);
     });
 });
 
@@ -514,7 +524,7 @@ describe('Spending API Integration', function () {
     it('can list spendings', function () {
         $response = Billingo::spending()->spendingList();
 
-        expect($response)->toBeInstanceOf(\Omisai\Billingo\Models\SpendingList::class);
+        expect($response)->toBeInstanceOf(SpendingList::class);
         expect($response->getData())->toBeArray();
     });
 });
